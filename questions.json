@@ -24,11 +24,11 @@
 	},
 	{
 		"Text": "Well, this actress has always been a little nerdy, including in 1999 when, \"This one time, at band camp...\"",
+		"Comment": "clip from 0:00-0:22 https://www.youtube.com/watch?v=K9NeSYqFiLY",
 		"Answer":
 		{
 			"Text": "<i>Alyson Hannigan</i> starred as Michelle Flaherty in the 1999 movie American Pie.",
-			"Video": "3-Answer.mp4",
-			"Comment": "clip from 0:00-0:22 https://www.youtube.com/watch?v=K9NeSYqFiLY"
+			"Video": "3-Answer.mp4"
 		}
 	},
 	{
@@ -38,16 +38,17 @@
 		"Answer":
 		{
 			"Text": "Anthony Stewart Head starred in a series of commercials for <i>Nescafe Gold Blend</i>.",
-			"Video": "4-Answer.mp4"
+			"Video": "4-Answer.mp4",
+			"MinVideoWidth": "35vw"
 		}
 	},
 	{
-		"Text": "While it's fun to laugh at the old tech used on Buffy, the show was actually the <i>first instance</i> of this search engine's name being used as a verb.",
+		"Text": "While it's fun to laugh at the old tech used on Buffy, the show actually had the <i>first instance</i> of this search engine's name being used as a verb.",
 		"Comment": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fifunny.co%2Fpicture%2Fsometimes-i-forget-how-old-buffy-is-until-i-see-n5kSAVz3A&psig=AOvVaw2qnFqJTwR5F6eL4V9IZ3_c&ust=1745726895420000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCPj6uM_p9IwDFQAAAAAdAAAAABAI",
 		"Answer":
 		{
 			"Text": "Maybe you should <i>Google it!</i>",
-			"Image": "5-Answer.png"
+			"Image": "5-Answer.jpg"
 		}
 	},
 	{
