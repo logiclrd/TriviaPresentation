@@ -969,6 +969,9 @@ function ShowQuestion(questionIndex)
 
 		video.style.display = "flex";
 		video.style.flexGrow = "1";
+		video.style.maxWidth = "100%";
+		video.style.maxHeight = "100%";
+		video.style.objectFit = "contain";
 
 		video.autoplay = false;
 		video.loop = false;
@@ -1058,6 +1061,9 @@ function ShowAnswer(questionIndex)
 
 		image.style.display = "flex";
 		image.style.flexGrow = "1";
+		image.style.maxWidth = "100%";
+		image.style.maxHeight = "100%";
+		image.style.objectFit = "contain";
 
 		image.src = answer.Image;
 
@@ -1078,6 +1084,9 @@ function ShowAnswer(questionIndex)
 
 		video.style.display = "flex";
 		video.style.flexGrow = "1";
+		video.style.maxWidth = "100%";
+		video.style.maxHeight = "100%";
+		video.style.objectFit = "contain";
 
 		video.autoplay = false;
 		video.loop = false;
