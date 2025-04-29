@@ -1,0 +1,201 @@
+[
+	{
+		"Music": "MusicLoop.wav"
+	},
+	{
+		"Text": "Before she slew vampires, Sarah Michelle Gellar appeared in this soap opera in the 1990s.",
+		"Video": "1-Question.mp4",
+		"Comment": "Can include clip - 3:42-3:58 https://www.youtube.com/watch?v=IZG0L46nuD4 / Also possible clip source: https://archive.org/details/all-my-children-august-12-1994",
+		"Answer":
+		{
+			"Text": "Sarah Michelle Gellar starred as Kendall in the award-winning soap opera <i>All My Children</i>.",
+			"Video": "1-Answer.mp4"
+		}
+	},
+	{
+		"Text": "Speaking of '90s soap operas, what show is this the theme song for, and what other significance does it have to Buffy the Vampire Slayer?",
+		"Video": "2-Question.mp4",
+		"Comment": "Play audio only, 0:00-0:10 - https://www.youtube.com/watch?v=502oR8iotGs&list=RD502oR8iotGs&start_radio=1. Could also show this after it: https://www.youtube.com/watch?v=N4LTtqYkk1Y",
+		"Answer":
+		{
+			"Text": "Spike and Joyce found a shared passion for the soap opera <i>Passions</i>.",
+			"Video": "2-Answer.mp4"
+		}
+	},
+	{
+		"Text": "Well, this actress has always been a little nerdy, including in 1999 when, \"This one time, at band camp...\"",
+		"Answer":
+		{
+			"Text": "<i>Alyson Hannigan</i> starred as Michelle Flaherty in the 1999 movie American Pie.",
+			"Video": "3-Answer.mp4",
+			"Comment": "clip from 0:00-0:22 https://www.youtube.com/watch?v=K9NeSYqFiLY"
+		}
+	},
+	{
+		"Text": "Before he was a hunky librarian, he was a hunky connoisseur of what brand of coffee?",
+		"Video": "4-Question.mp4",
+		"Comment": "Clips have already been isolated as part of making the PoC in Kdenlive",
+		"Answer":
+		{
+			"Text": "Anthony Stewart Head starred in a series of commercials for <i>Nescafe Gold Blend</i>.",
+			"Video": "4-Answer.mp4"
+		}
+	},
+	{
+		"Text": "While it's fun to laugh at the old tech used on Buffy, the show was actually the <i>first instance</i> of this search engine's name being used as a verb.",
+		"Comment": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fifunny.co%2Fpicture%2Fsometimes-i-forget-how-old-buffy-is-until-i-see-n5kSAVz3A&psig=AOvVaw2qnFqJTwR5F6eL4V9IZ3_c&ust=1745726895420000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCPj6uM_p9IwDFQAAAAAdAAAAABAI",
+		"Answer":
+		{
+			"Text": "Maybe you should <i>Google it!</i>",
+			"Image": "5-Answer.png"
+		}
+	},
+	{
+		"Text": "This 1995 film features not one, not two but three Buffy alumni &ndash; Eliza Dushku (Faith), Amber Benson (Tara) and Lindsay Crouse (Professor Walsh).",
+		"Video": "5-Question.mp4",
+		"Comment": "clip from 0:10-0:27 https://www.youtube.com/watch?v=-l0uznoY77o&list=RD-l0uznoY77o&start_radio=1",
+		"Answer":
+		{
+			"Text": "<i>Bye Bye Love</i>",
+			"Image": "6-Answer.png"
+		}
+	},
+	{
+		"Text": "In 1998's <i>Can't Hardly Wait</i>, this Buffy alumnus has consumed a substance and stares at a banana.",
+		"Comment": "https://www.youtube.com/watch?v=IRDhbfy28no",
+		"Answer":
+		{
+			"Text": "<i>Amber Benson</i>, along with Liv Tyler and Melissa Joan Hart, was among a number of names whose absence in the credits for Can't Hardly Wait is surprising.",
+			"Video": "7-Answer.mp4"
+		}
+	},
+	{
+		"Text": "Also in <i>Can't Hardly Wait</i>, Seth Green plays Kenny Fisher, who prefers to be called what name?",
+		"Comment": "Clip from 0:00-0:13 https://www.youtube.com/watch?v=fXpwdtEGSak",
+		"Answer":
+		{
+			"Text": "<i>Special K</i>",
+			"Video": "8-Answer.mp4"
+		}
+	},
+	{
+		"Text": "The 1999 queer classic <i>But I'm a Cheerleader</i> stars two Buffy alumni &ndash; who are they, and what roles do they play on Buffy?",
+		"Comment": "Clip from 2:36-3:05 https://www.youtube.com/watch?v=BaSncxy0W5g",
+		"Answer":
+		{
+			"Text": "<i>Clea Duvall</i>, who plays Marcie Ross, the invisible girl in Buffy Season 1, and <i>Katherine Towne</i>, who plays a vampire named Sunday in Buffy Season 4",
+			"Video": "9-Answer.mp4"
+		}
+	},
+	{
+		"Text": "Another actor in this film was not in Buffy, but she was originally thought of for the role of Willow and turned it down!",
+		"Answer":
+		{
+			"Text": "<i>Melanie Lynskey</i>"
+		}
+	},
+	{
+		"Text": "One of our event buttons this year utters this famous and very 1990s Buffy quote, \"If the apocalypse comes, ...</i>",
+		"Comment": "whole clip shown - https://www.youtube.com/watch?v=cDGOjq20QGc",
+		"Answer":
+		{
+			"Text": "<i>Beep Me</i>",
+			"Subtext": "Hands up in the audience if you're too young to know what a pager is"
+		}
+	},
+	{
+		"Text": "He has a history of medical acting! Before he was Horrible, he starred as a child doctor in what show?",
+		"Answer":
+		{
+			"Text": "<i>Doogie Howser</i>, in which Neil Patrick Harris stars as the character after which the show is named.",
+			"Video": "12-Answer.mp4"
+		}
+	},
+	{
+		"Text": "Like older sister, like younger sister... The actors behind both Summers girls starred in commercials for which fast food hcain, exactly 10 years apart in 1981 and 1991?",
+		"Comment": "Take a clip from Dawn's - https://www.youtube.com/watch?v=do4QbGcRwkI Take a clip from Buffy's - https://www.youtube.com/watch?v=-Ss7_5PSnyA ",
+		"Answer":
+		{
+			"Text": "<i>Burger King</i>",
+			"Video": "13-Answer.mp4"
+		}
+	},
+	{
+		"Text": "A younger Nathan Fillion is mistaken for the wrong Ryan and given devastating news in this 1998 war epic.",
+		"Comment": "Clip 2:37-2:59 https://www.youtube.com/watch?v=AaS2yRAf8B8 ",
+		"Answer":
+		{
+			"Text": "<i>Saving Private Ryan</i>, directed by Steven Spielberg",
+			"Video": "14-Answer.mp4"
+		}
+	},
+	{
+		"Text": "Before he was the bad boy Buffy boyfriend, David Boreanaz also played a bad boy boyfriend on what sitcom in 1993?",
+		"Comment": "Clip 2:03-2:18 https://www.youtube.com/watch?v=QjraQ19cWho ",
+		"Answer":
+		{
+			"Text": "<i>Married... with Children</i>",
+			"Video": "15-Answer.mp4"
+		}
+	},
+	{
+		"Text": "Cordelia references this 1990s store and ad campaign telling Willow in the very first episode, \"Nice dress! Good to know you've seen...\"",
+		"Comment": "0:26-0:30 - https://www.youtube.com/watch?v=OkunW01gJLk ",
+		"Answer":
+		{
+			"Text": "... the softer side of <i>Sears</i>",
+			"Video": "16-Answer.mp4"
+		}
+	},
+	{
+		"Text": "When we try to explain to others what this show is, we often say it's sort of like screenings of the Rocky Horror Picture Show. Does anyone know what Buffy star is known for starring in Rocky Horror in London in 1990-1991?",
+		"Comment": "Clip from 3:55-4:42 https://www.youtube.com/watch?v=-LH43hTh5KI&list=RD-LH43hTh5KI&start_radio=1 ",
+		"Answer":
+		{
+			"Text": "<i>Anthony Stewart Head</i> gave a thrilling live action performance of Dr. Frank-N-Furter",
+			"Video": "17-Answer.mp4"
+		}
+	},
+	{
+		"Text": "As most know, Buffy was a 1992 movie before it was a TV show! Name some big celebrity names to star in that movie.",
+		"Comment": "Clip from 1:22-1:53 https://www.youtube.com/watch?v=5xLV-FUBhkY;  ",
+		"Answer":
+		{
+			"Text": "Kristy Swannson; Donald Sutherland; Paul Reubens; Luke Perry; Hilary Swank; David Arquette",
+			"Video": "18-Answer.mp4"
+		}
+	},
+	{
+		"Text": "Another button references this popular 1990s food which Spike is partial to &ndash; what is it?",
+		"Comment": "0:21-0:30 https://www.youtube.com/watch?v=6eb3unhWIs0 ",
+		"Answer":
+		{
+			"Text": "The <i>Blooming Onion</i>",
+			"Video": "19-Answer.mp4"
+		}
+	},
+	{
+		"Text": "It's so fun to share the show with Junior Scoobies &ndash; but some references might be lost on them. Here are some questions for the kids here that will test your knowledge of lost 1990s technology!<br><br>Buffy tells Giles, \"Be kind, rewind.\" What does that mean?",
+		"Answer":
+		{
+			"QuestionText": "Buffy tells Giles, \"Be kind, rewind.\" What does that mean?",
+			"Text": "Shows and movies used to come on <i>VHS tapes</i>. As they played, the tape moved from one reel to the other. It had to be \"rewound\" in order to be played again. Tapes could be rented, and some shops put stickers on to remind you to rewind before returning."
+		}
+	},
+	{
+		"Text": "How about when Buffy says, \"I killed my Giga Pet\". What's that??",
+		"Answer":
+		{
+			"Text": "Simple electronic toys that displayed a little animal on their screen. You had to take good care of your pet, or it would become depressed or die. (They also die of old age.) You may have heard of a similar toy, the Tamagotchi."
+		}
+	},
+	{
+		"Text": "Lastly, what on Earth is this thing that falls to the ground and is an important part of the episode?",
+		"Comment": "Clip from Buffy s2 ep. 17, 43:17-43:31",
+		"Image": "22-Question.mp4",
+		"Answer":
+		{
+			"Text": "Before USB drives, we stored computer files on \"floppy disks\" that contained a disc coated in a magnetic material. A \"disk drive\" would physically rotate the disk in order to access data. Even by the standards of the day, they were <i>very slow</i>."
+		}
+	}
+]

@@ -1,0 +1,1126 @@
+<html>
+	<head>
+		<script type="text/javascript">
+var cBackground;
+var pnlRoot;
+var pnlQuestion;
+
+var backgroundMusicContext;
+var backgroundMusicGain;
+
+var BackgroundMusicDefaultVolume = 0.2;
+var NextQuestionVolume = 0.4;
+
+var backgroundMusicTargetVolume = BackgroundMusicDefaultVolume;
+
+function PlayBackgroundMusicLoop(musicSrc)
+{
+	backgroundMusicContext = new AudioContext();
+
+	function PlayLoop(decodedBuffer)
+	{
+		var sourceNode = backgroundMusicContext.createBufferSource();
+		var gainNode = backgroundMusicContext.createGain();
+
+		gainNode.connect(backgroundMusicContext.destination);
+		gainNode.gain.setValueAtTime(backgroundMusicTargetVolume, backgroundMusicContext.currentTime);
+
+		sourceNode.buffer = decodedBuffer;
+		sourceNode.connect(gainNode);
+		sourceNode.loop = true;
+		sourceNode.start();
+
+		backgroundMusicGain = gainNode;
+	}
+
+	fetch(musicSrc)
+		.then(response => response.arrayBuffer())
+		.then(buffer => backgroundMusicContext.decodeAudioData(buffer, PlayLoop));
+}
+
+function FadeBackgroundMusicVolumeTo(targetVolume)
+{
+	backgroundMusicTargetVolume = targetVolume;
+
+	if (backgroundMusicGain)
+	{
+		backgroundMusicGain.gain.setValueAtTime(backgroundMusicGain.gain.value, backgroundMusicContext.currentTime);
+		backgroundMusicGain.gain.linearRampToValueAtTime(targetVolume, backgroundMusicContext.currentTime + 0.8);
+	}
+}
+
+var ambientColour = "rgb(124 98 255 / 0.274)";
+
+var backgroundScrollX = 0;
+var backgroundScrollZ = 0;
+
+var backgroundScrollT = 0;
+var backgroundScrollDT = 0;
+var backgroundScrollDX = 0;
+var backgroundScrollDDX = 0;
+var backgroundScrollDZ = 2;
+var backgroundScrollDDZ = 0;
+var backgroundScrollNextFunctor = null;
+
+function ScrollBackground()
+{
+	backgroundScrollT += backgroundScrollDT;
+
+	backgroundScrollDX += backgroundScrollDDX;
+	backgroundScrollDZ += backgroundScrollDDZ;
+
+	backgroundScrollX += backgroundScrollDX;
+	backgroundScrollZ += backgroundScrollDZ;
+
+	if ((backgroundScrollT >= 1) && (backgroundScrollNextFunctor != null))
+		backgroundScrollNextFunctor();
+}
+
+var cellWidth = 1920 / 4;
+var cellHeight = 1080 / 20;
+
+var lineWidth = 40; // Width of the X cell lines when they are at their closest (top and bottom of screen)
+var lineHeight = 8; // Height of the Z cell lines
+var lineStart = cellWidth / 2 - lineWidth / 2;
+var lineEnd = cellWidth / 2 + lineWidth / 2;
+
+var lineFarY = 500;
+var lineFarYContraction = 4.5;
+
+var xLineGradient =
+	[
+		[ 0.00,   0,   0, 224, 0.000 ],
+		[ 0.25,   0,   0, 224, 0.571 ],
+		[ 0.40,  64,  64, 224, 0.700 ],
+		[ 0.50, 255, 255, 255, 1.000 ],
+		[ 0.60, 255,  64, 200, 0.700 ],
+		[ 0.75, 144,  43, 128, 0.571 ],
+		[ 1.00, 144,  43, 128, 0.000 ],
+	];
+
+var zLineGradient =
+	[
+		[ 0.00, 132,  94, 255, 0.552 ],
+		[ 0.25, 132,  94, 255, 0.552 ],
+		[ 0.26, 132,  94, 255, 0.386 ],
+		[ 1.00, 132,  94, 255, 0.000 ],
+	];
+
+var dummyContext = new OffscreenCanvas(10, 10).getContext("2d");
+
+var distanceFadeGradientTop = dummyContext.createLinearGradient(0, 0, 0, lineFarY);
+
+distanceFadeGradientTop.addColorStop(0, "#00000000");
+distanceFadeGradientTop.addColorStop(1, "black");
+
+var distanceFadeGradientBottom = dummyContext.createLinearGradient(0, 1080, 0, 1080 - lineFarY);
+
+distanceFadeGradientBottom.addColorStop(0, "#00000000");
+distanceFadeGradientBottom.addColorStop(1, "black");
+
+var stars = [];
+
+for (let i = 0; i < 20; i++)
+	stars.push([ Math.random() * 1920, Math.random() * 1080, Math.random(3) + 2 ]);
+
+function Shuffle(array)
+{
+	for (let i = array.length - 1; i >= 0; i--)
+	{
+		let j = Math.floor(Math.random() * (i + 1));
+
+		if (j < i)
+			[array[i], array[j]] = [array[j], array[i]];
+	}
+}
+
+function RenderBackground()
+{
+	var context = cBackground.getContext("2d");
+
+	context.fillStyle = "black";
+	context.fillRect(0, 0, 1920, 1080);
+
+	var lineCloseWidth = 960 * lineFarYContraction;
+
+	var zScale = 1000 * cellHeight;
+
+	context.globalCompositeOperation = "lighter";
+
+	for (let y = 0; y < lineFarY; y++)
+	{
+		var z = zScale / (lineFarY - y + 40);
+
+		var phase = (z + backgroundScrollZ) % cellHeight;
+
+		if (phase < 0)
+			phase += cellHeight;
+
+		if (phase < lineHeight)
+		{
+			let gradientT = phase / lineHeight;
+
+			for (let i = 1; i < zLineGradient.length; i++)
+			{
+				let previousStop = zLineGradient[i - 1];
+				let stop = zLineGradient[i];
+
+				if (gradientT < stop[0])
+				{
+					let l = stop[0] - previousStop[0];
+
+					let a = (gradientT - previousStop[0]) / l;
+					let b = (stop[0] - gradientT) / l;
+
+					context.beginPath();
+
+					context.lineWidth = 1;
+
+					let contextstrokeStyle =
+						`rgb
+						(
+							${Math.round(a * stop[1] + b * previousStop[1])} 
+							${Math.round(a * stop[2] + b * previousStop[2])} 
+							${Math.round(a * stop[3] + b * previousStop[3])} / 
+							${           a * stop[4] + b * previousStop[4] }
+						)`.replace(/[\t\r\n]/g, '');
+
+					context.strokeStyle = contextstrokeStyle;
+
+					context.moveTo(0, y);
+					context.lineTo(1920, y);
+					context.moveTo(0, 1080 - y);
+					context.lineTo(1920, 1080 - y);
+					context.closePath();
+					context.stroke();
+
+					break;
+				}
+			}
+		}
+	}
+
+	for (let x = -lineCloseWidth; x < lineCloseWidth; x++)
+	{
+		let phase = (x + backgroundScrollX) % cellWidth;
+
+		if (phase < 0)
+			phase += cellWidth;
+
+		if ((phase >= lineStart) && (phase <= lineEnd))
+		{
+			let gradientT = (phase - lineStart) / lineWidth;
+
+			for (let i = 1; i < xLineGradient.length; i++)
+			{
+				let previousStop = xLineGradient[i - 1];
+				let stop = xLineGradient[i];
+
+				if (gradientT < stop[0])
+				{
+					let l = stop[0] - previousStop[0];
+
+					let a = (gradientT - previousStop[0]) / l;
+					let b = (stop[0] - gradientT) / l;
+
+					context.beginPath();
+
+					context.lineWidth = 1;
+
+					let contextstrokeStyle =
+						`rgb
+						(
+							${Math.round(a * stop[1] + b * previousStop[1])} 
+							${Math.round(a * stop[2] + b * previousStop[2])} 
+							${Math.round(a * stop[3] + b * previousStop[3])} / 
+							${           a * stop[4] + b * previousStop[4] }
+						)`.replace(/[\t\r\n]/g, '');
+
+					context.strokeStyle = contextstrokeStyle;
+
+					context.moveTo(960 + x, 0);
+					context.lineTo(960 + x / lineFarYContraction, lineFarY);
+					context.moveTo(960 + x, 1080);
+					context.lineTo(960 + x / lineFarYContraction, 1080 - lineFarY);
+					context.closePath();
+					context.stroke();
+
+					break;
+				}
+			}
+		}
+	}
+
+	context.globalCompositeOperation = "source-over";
+
+	context.fillStyle = distanceFadeGradientTop;
+	context.fillRect(0, 0, 1920, lineFarY + 1);
+
+	context.fillStyle = distanceFadeGradientBottom;
+	context.fillRect(0, 1079 - lineFarY, 1920, lineFarY);
+
+	for (let i = 0; i < stars.length; i++)
+	{
+		let star = stars[i];
+
+		let starX = star[0];
+		let starY = star[1];
+		let starR = star[2];
+
+		let starGlowX = 960 + (starX - 960) * 1.01;
+		let starGlowY = 540 + (starY - 540) * 1.01;
+		let starGlowR = starR * 4;
+
+		var starGradient = context.createRadialGradient(starX, starY, starR, starGlowX, starGlowY, starGlowR);
+
+		starGradient.addColorStop(0, "rgb(255 255 255)");
+		starGradient.addColorStop(0.05, "rgb(255 255 255 / 1)");
+		starGradient.addColorStop(0.051, "rgb(255 255 255 / 0.1)");
+		starGradient.addColorStop(1, "rgb(255 255 255 / 0)");
+
+		context.fillStyle = starGradient;
+		context.fillRect(starGlowX - starGlowR, starGlowY - starGlowR, 2 * starGlowR, 2 * starGlowR);
+	}
+
+	context.fillStyle = ambientColour;
+	context.fillRect(0, 0, 1920, 1080);
+}
+
+function ScrollDuringQuestion()
+{
+	backgroundScrollDZ = 2;
+	backgroundScrollDDZ = 0;
+
+	backgroundScrollDX = 0;
+	backgroundScrollDDX = 0;
+
+	backgroundScrollT = 0;
+	backgroundScrollDT = 0;
+}
+
+function FinishedScroll(finishedCallback)
+{
+	ScrollDuringQuestion();
+
+	finishedCallback();
+}
+
+function ScrollToPreviousQuestion(finishedCallback)
+{
+	ClearQuestion();
+
+	backgroundScrollDZ = 0;
+	backgroundScrollDDZ = 0;
+
+	backgroundScrollDX = 0;
+	backgroundScrollDDX = -20;
+
+	backgroundScrollT = 0;
+	backgroundScrollDT = 0.1;
+
+	backgroundScrollNextFunctor =
+		() =>
+		{
+			backgroundScrollDZ = 0;
+			backgroundScrollDDZ = 0;
+
+			backgroundScrollDDX = 20;
+
+			backgroundScrollT = 0;
+			backgroundScrollDT = 0.1;
+
+			backgroundScrollNextFunctor =
+				() => FinishedScroll(finishedCallback);
+		};
+}
+
+function ScrollToNextQuestion(finishedCallback)
+{
+	var audio = new Audio("Next Question.mp3");
+
+	audio.volume = NextQuestionVolume;
+	audio.play();
+
+	ClearQuestion();
+
+	backgroundScrollDZ = 0;
+	backgroundScrollDDZ = 0;
+
+	backgroundScrollDX = 0;
+	backgroundScrollDDX = 20;
+
+	backgroundScrollT = 0;
+	backgroundScrollDT = 0.1;
+
+	backgroundScrollNextFunctor =
+		() =>
+		{
+			backgroundScrollDZ = 0;
+			backgroundScrollDDZ = 0;
+
+			backgroundScrollDDX = -20;
+
+			backgroundScrollT = 0;
+			backgroundScrollDT = 0.1;
+
+			backgroundScrollNextFunctor =
+				() => FinishedScroll(finishedCallback);
+		};
+}
+
+function CreateDecorationContainer(pnlQuestion)
+{
+	var pnlDecoration = document.createElement("div");
+
+	pnlDecoration.className = "QuestionPanelDecoration";
+
+	pnlQuestion.appendChild(pnlDecoration);
+
+	return pnlDecoration;
+}
+
+var LineSpacing = 12;
+var LineThickness = 5;
+var LineSlope = 3;
+var LineMaxHeight = 80;
+
+function Decorate_Drawing(pnlQuestion, draw)
+{
+	var pnlDecoration = CreateDecorationContainer(pnlQuestion);
+
+	var attachToBorderY = 400 - 800 * Math.trunc(Math.random() * 2);
+	var positionX = 1240 * Math.random() - 620;
+
+	var drawing = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+	var width = 0;
+	var height = 0;
+
+	draw(
+		drawing,
+		(x, y) =>
+		{
+			width = Math.max(width, x);
+			height = Math.max(height, y);
+		});
+
+	width = Math.ceil(width);
+	height = Math.ceil(height);
+
+	drawing.setAttribute("version", "1.1");
+	drawing.setAttribute("width", width);
+	drawing.setAttribute("height", height);
+	drawing.setAttribute("viewbox", `0 0 ${width} ${height}`);
+
+	drawing.style.position = "relative";
+	drawing.style.left = -0.5 * width + "px";
+	drawing.style.top = -0.5 * height + "px";
+
+	var positioner = document.createElement("div");
+
+	positioner.style.position = "relative";
+	positioner.style.left = positionX + "px";
+	positioner.style.top = attachToBorderY + "px"
+
+	positioner.appendChild(drawing);
+
+	pnlDecoration.appendChild(positioner);
+}
+
+function Decorate_Lines(pnlQuestion)
+{
+	Decorate_Drawing(
+		pnlQuestion,
+		(drawing, extend) =>
+		{
+			var lineCount = Math.trunc(Math.random() * 3 + 2);
+
+			var lineHeight = 60;
+
+			var lineDataParts = [];
+
+			for (let i = 0; i < lineCount; i++)
+			{
+				let lineStart = Math.random() * 0.3;
+				let lineEnd = Math.random() * 0.3 + 0.7;
+
+				let lineMinX = LineThickness + i * LineSpacing;;
+				let lineMinY = LineThickness + LineMaxHeight;
+
+				let lineMaxX = LineThickness + lineMinX + LineMaxHeight / LineSlope;;
+				let lineMaxY = LineThickness;
+
+				var lineStartX = lineStart * lineMinX + (1 - lineStart) * lineMaxX;
+				var lineStartY = lineStart * lineMinY + (1 - lineStart) * lineMaxY;
+
+				var lineEndX = lineEnd * lineMinX + (1 - lineEnd) * lineMaxX;
+				var lineEndY = lineEnd * lineMinY + (1 - lineEnd) * lineMaxY;
+
+				lineDataParts.push(`M ${lineStartX},${lineStartY} ${lineEndX},${lineEndY}`);
+
+				extend(LineThickness + lineStartX, LineThickness + lineStartY);
+				extend(LineThickness + lineEndX, LineThickness + lineEndY);
+			}
+
+			var lineData = lineDataParts.join(' ');
+
+			var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+			drawing.appendChild(path);
+
+			path.style.stroke = `hsl(${Math.random() * 360} 60% 60%)`
+			path.style.strokeWidth = LineThickness;
+			path.style.strokeLinecap = "round";
+
+			path.setAttribute("d", lineData);
+		});
+}
+
+var PolyMinWidth = 110;
+var PolyMaxWidth = 130;
+
+var PolyMinHeight = 75;
+var PolyMaxHeight = 100;
+
+var PolyMaxDisplacement = 15;
+
+var PolyOutlineThickness = 2;
+
+var PolyMinArea = 1000;
+
+function CalculatePolygonArea(polyPoints)
+{
+	var area = 0;
+
+	for (let i = 0; i < polyPoints.length; i++)
+	{
+		let j = (i + 1) % polyPoints.length;
+
+		area += polyPoints[i][0] * polyPoints[j][1] - polyPoints[i][1] * polyPoints[j][0];
+	}
+
+	area *= 0.5;
+
+	return Math.abs(area);
+}
+
+function Decorate_Geometry(pnlQuestion)
+{
+	Decorate_Drawing(
+		pnlQuestion,
+		(drawing, extend) =>
+		{
+			let polyCount = Math.trunc(Math.random() * 2 + 2);
+
+			let polys = [];
+
+			let minOverallX = PolyMaxWidth, minOverallY = PolyMaxHeight;
+
+			for (let i = 0; i < polyCount; i++)
+			{
+				let polyPoints = null;
+
+				do
+				{
+					polyPoints = [];
+
+					let polyPointCount = Math.trunc(Math.random() * 2 + 3);
+
+					polyWidth = Math.random() * (PolyMaxWidth - PolyMinWidth) + PolyMinWidth;
+					polyHeight = Math.random() * (PolyMaxHeight - PolyMinHeight) + PolyMinHeight;
+					
+					let displacementAngle = Math.random() * 6.283185;
+					let displacementDistance = Math.random() * PolyMaxDisplacement;
+					
+					let displacementX = Math.cos(displacementAngle) * displacementDistance;
+					let displacementY = Math.sin(displacementAngle) * displacementDistance;
+
+					var xValues = [];
+					var yValues = [];
+
+					let minX = polyWidth;
+					let minY = polyHeight;
+					let maxX = 0;
+					let maxY = 0;
+
+					// Select X and Y coordinates as independent lists.
+					for (let j = 0; j < polyPointCount; j++)
+					{
+						let x = Math.random() * polyWidth;
+						let y = Math.random() * polyHeight;
+
+						xValues.push(x);
+						yValues.push(y);
+
+						minX = Math.min(minX, x);
+						miny = Math.min(minY, y);
+						maxX = Math.max(maxX, x);
+						maxy = Math.max(maxY, y);
+					}
+
+					// Sort each list of coordinates.
+					xValues.sort((a, b) => a - b);
+					yValues.sort((a, b) => a - b);
+
+					// Split the coordinates into two chains randomly.
+					xChains = [];
+					yChains = [];
+
+					let lastTop = minX, lastBottom = minX;
+
+					for (let j = 1; j < polyPointCount; j++)
+					{
+						let x = xValues[j];
+
+						if (Math.random() < 0.5)
+						{
+							xChains.push(x - lastTop);
+							lastTop = x;
+						}
+						else
+						{
+							xChains.push(lastBottom - x);
+							lastBottom = x;
+						}
+					}
+
+					xChains.push(maxX - lastTop);
+					xChains.push(lastBottom - maxX);
+
+					let lastLeft = minY, lastRight = minY;
+
+					for (let j = 1; j < polyPointCount; j++)
+					{
+						let y = yValues[j];
+
+						if (Math.random() < 0.5)
+						{
+							yChains.push(y - lastLeft);
+							lastLeft = y;
+						}
+						else
+						{
+							yChains.push(lastRight - y);
+							lastRight = y;
+						}
+					}
+
+					yChains.push(maxY - lastLeft);
+					yChains.push(lastRight - maxY);
+
+					// Get ready to associate the X and Y values into vectors, but randomize the associations.
+					Shuffle(yChains);
+
+					// Turn the X and Y values into vectors and sort them by their angle.
+					pointVectors = [];
+
+					for (let j = 0; j < polyPointCount; j++)
+						pointVectors.push([xChains[j], yChains[j]]);
+
+					pointVectors.sort((a, b) => Math.atan2(a[1], a[0]) - Math.atan2(b[1], b[0]));
+
+					// Convert the chain of vectors into points, keeping track of the minimum X and Y coordinate values.
+					let x = 0, y = 0;
+
+					let minPolyX = PolyMaxWidth * 10;
+					let minPolyY = PolyMaxHeight * 10;
+
+					for (let j = 0; j < polyPointCount; j++)
+					{
+						polyPoints.push([x, y]);
+
+						minPolyX = Math.min(minPolyX, x);
+						minPolyY = Math.min(minPolyY, y);
+
+						x += pointVectors[j][0];
+						y += pointVectors[j][1];
+					}
+
+					let dx = minX - minPolyX;
+					let dy = minY - minPolyY;
+
+					// Shift the polygon back to the original minimum X, Y values, and factor the displacement in.
+					for (let j = 0; j < polyPointCount; j++)
+					{
+						polyPoints[j][0] += dx;
+						polyPoints[j][1] += dy;
+
+						minOverallX = Math.min(minOverallX, polyPoints[j][0]);
+						minOverallY = Math.min(minOverallY, polyPoints[j][1]);
+					}
+				} while (CalculatePolygonArea(polyPoints) < PolyMinArea);
+
+				polys.push(polyPoints);
+			}
+
+			for (let i = 0; i < polys.length; i++)
+				for (let j = 0; j < polys[i].length; j++)
+				{
+					polys[i][j][0] += 5 * PolyOutlineThickness - minOverallX;
+					polys[i][j][1] += 5 * PolyOutlineThickness - minOverallY;
+
+					extend(polys[i][j][0] + 5 * PolyOutlineThickness, polys[i][j][1] + 5 * PolyOutlineThickness);
+				}
+
+			for (let i = 0; i < polys.length; i++)
+			{
+				let polyPoints = polys[i];
+
+				let polyDataParts = ['M'];
+
+				for (let j = 0; j < polyPoints.length; j++)
+					polyDataParts.push(`${polyPoints[j][0]} ${polyPoints[j][1]}`);
+
+				polyDataParts.push('z');
+
+				var polyData = polyDataParts.join(' ');
+
+				var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+				drawing.appendChild(path);
+
+				var hue = Math.random() * 360;
+				var saturation = Math.random() * 20 + 50;
+
+				path.style.fill = `hsl(${hue} ${saturation}% 60%)`;
+				path.style.stroke = `hsl(${hue} ${saturation}% 45%)`;
+				path.style.strokeWidth = PolyOutlineThickness;
+				path.style.strokeLinecap = "round";
+				path.style.strokeLinejoin = "miter";
+
+				path.setAttribute("d", polyData);
+			}
+		});
+}
+
+var decorators = [ Decorate_Lines, Decorate_Geometry ];
+
+function GenerateQuestionPanel()
+{
+	let pnlQuestion = document.createElement("div");
+
+	pnlQuestion.className = "QuestionPanel";
+
+	var decorationType = Math.trunc(Math.random() * decorators.length);
+
+	decorators[decorationType](pnlQuestion);
+
+	return pnlQuestion;
+}
+
+function GetVideoRect()
+{
+	// This function assumes that the element is configured to stretch the video to fit the bounding rectangle and centre it.
+	var bounds = this.getBoundingClientRect();
+
+	var videoWidth = this.videoWidth;
+	var videoHeight = this.videoHeight;
+
+	var stretchedVideoWidth = bounds.width;
+	var stretchedVideoHeight = videoHeight * bounds.width / videoWidth;
+
+	if (stretchedVideoHeight > bounds.height)
+	{
+		stretchedVideoHeight = bounds.height;
+		stretchedVideoWidth = videoWidth * bounds.height / videoHeight;
+	}
+
+	var rect =
+		{
+			x: (bounds.left + bounds.right) / 2 - stretchedVideoWidth / 2,
+			y: (bounds.top + bounds.bottom) / 2 - stretchedVideoHeight / 2,
+			width: stretchedVideoWidth,
+			height: stretchedVideoHeight
+		};
+
+	return DOMRect.fromRect(rect);
+}
+
+function CreateVCROverlay(pnlLayout, referenceVideoWithAbsolutePosition)
+{
+	if (!(referenceVideoWithAbsolutePosition instanceof HTMLVideoElement))
+			throw "Internal error: Reference is not a <video> element";
+
+	var vcrOverlay = {};
+
+	vcrOverlay.Functor = "pending";
+
+	vcrOverlay.AnimateToPlay =
+		video =>
+		{
+			if (vcrOverlay.Functor == "pending")
+				vcrOverlay.AnimateToPlayWhenReady = video;
+			else
+				vcrOverlay.Functor(video);
+		};
+
+	vcrOverlay.IsLayoutComplete = false;
+
+	function CompleteLayout()
+	{
+		if (vcrOverlay.IsLayoutComplete)
+			return;
+
+		vcrOverlay.IsLayoutComplete = true;
+
+		let referenceRect;
+		
+		referenceVideoWithAbsolutePosition.getVideoRect = GetVideoRect;
+
+		referenceRect = referenceVideoWithAbsolutePosition.getVideoRect();
+
+		var parentRect = pnlLayout.getBoundingClientRect();
+
+		referenceRect.x -= parentRect.x;
+		referenceRect.y -= parentRect.y;
+
+		vcrOverlay.lblPlay = document.createElement("div");
+
+		vcrOverlay.lblPlay.style.position = "absolute";
+		vcrOverlay.lblPlay.style.left = (referenceRect.right - 8 - 15 - 8 - 75) + "px";
+		vcrOverlay.lblPlay.style.top = (referenceRect.top + 8) + "px";
+
+		vcrOverlay.lblPlay.className = "OSD";
+		vcrOverlay.lblPlay.innerText = "PLAY";
+		vcrOverlay.lblPlay.style.display = "none";
+
+		vcrOverlay.imgArrow = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+		vcrOverlay.imgArrow.style.position = "absolute";
+		vcrOverlay.imgArrow.style.left = (referenceRect.right - 8 - 24) + "px";
+		vcrOverlay.imgArrow.style.top = (referenceRect.top + 8) + "px";
+
+		vcrOverlay.imgArrow.setAttribute("version", "1.1");
+		vcrOverlay.imgArrow.setAttribute("width", "24");
+		vcrOverlay.imgArrow.setAttribute("height", "24");
+		vcrOverlay.imgArrow.setAttribute("viewbox", "0 0 24 24");
+
+		var arrowPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+		arrowPath.style.fill = "white";
+		arrowPath.style.stroke = "black";
+		arrowPath.setAttribute("d", "M 0,1 0,23 16,12 z");
+
+		vcrOverlay.imgArrow.appendChild(arrowPath);
+
+		pnlLayout.appendChild(vcrOverlay.lblPlay);
+		pnlLayout.appendChild(vcrOverlay.imgArrow);
+
+		vcrOverlay.Functor =
+			video =>
+			{
+				setTimeout(
+					() =>
+					{
+						vcrOverlay.lblPlay.style.display = "block";
+						setTimeout(
+							() =>
+							{
+								vcrOverlay.lblPlay.style.display = "none";
+								setTimeout(
+									() =>
+									{
+										vcrOverlay.lblPlay.style.display = "block";
+										setTimeout(
+											() =>
+											{
+												if (document.body.contains(video))
+													video.play();
+
+												setTimeout(
+													() =>
+													{
+														vcrOverlay.lblPlay.style.display = "none";
+														vcrOverlay.imgArrow.style.display = "none";
+													},
+													250);
+											},
+											250);
+									},
+									500);
+							},
+							500);
+					},
+					250);
+			};
+
+		if (vcrOverlay.AnimateToPlayWhenReady != null)
+			vcrOverlay.Functor(vcrOverlay.AnimateToPlayWhenReady);
+	}
+
+	if (referenceVideoWithAbsolutePosition.id == '')
+		referenceVideoWithAbsolutePosition.id = "p" + Math.random().toString().replace(".", "");
+
+	let selector = "#" + referenceVideoWithAbsolutePosition.id;
+	let readyState = referenceVideoWithAbsolutePosition.readyState;
+
+	function IsReady()
+	{
+		return document.querySelector(selector) && (referenceVideoWithAbsolutePosition.readyState > 0);
+	}
+
+	if (IsReady())
+		CompleteLayout();
+	else
+	{
+		function CompleteLayoutWhenReady()
+		{
+			if (IsReady())
+			{
+				Disconnect();
+				CompleteLayout();
+			}
+		}
+
+		let observer = new MutationObserver(CompleteLayoutWhenReady);
+
+		observer.observe(
+			document.body,
+			{
+				childList: true,
+				subtree: true
+			});
+
+		referenceVideoWithAbsolutePosition.addEventListener("loadeddata", CompleteLayoutWhenReady);
+
+		function Disconnect()
+		{
+			observer.disconnect();
+			referenceVideoWithAbsolutePosition.removeEventListener("loadeddata", CompleteLayoutWhenReady);
+		}
+	}
+
+	return vcrOverlay;
+}
+
+var prev = () => {};
+var next = () => {};
+
+function ClearQuestion()
+{
+	while (pnlRoot.firstChild)
+	{
+		var element = pnlRoot.firstChild;
+
+		if (element instanceof HTMLVideoElement)
+			element.stop();
+
+		pnlRoot.removeChild(element);
+	}
+}
+
+function ShowQuestion(questionIndex)
+{
+	// Prepare a blank slate.
+	ClearQuestion();
+
+	pnlQuestion = GenerateQuestionPanel();
+
+	pnlRoot.appendChild(pnlQuestion);
+
+	// Add the question and associated video or image.
+	var question = questions[questionIndex];
+
+	var pnlLayout = document.createElement("div");
+
+	pnlLayout.style.width = "calc(75vw - 24px)";
+	pnlLayout.style.height = "calc(66vh - 24px)";
+	pnlLayout.style.display = "flex";
+	pnlLayout.style.flexDirection = "column";
+	pnlLayout.style.alignItems = "stretch";
+	pnlLayout.style.alignContent = "stretch";
+
+	var pnlQuestionLayout = document.createElement("div");
+
+	pnlQuestionLayout.className = "QuestionLayout";
+
+	var lblNumber = document.createElement("span");
+
+	lblNumber.className = "QuestionNumber";
+	lblNumber.innerText = (questionIndex + 1) + ".";
+
+	var lblText = document.createElement("span");
+
+	lblText.className = "TriviaText";
+	lblText.innerHTML = question.Text;
+
+	pnlQuestionLayout.appendChild(lblNumber);
+	pnlQuestionLayout.appendChild(lblText);
+
+	pnlLayout.appendChild(pnlQuestionLayout);
+
+	if ("Video" in question)
+	{
+		var pnlVideoContainer = document.createElement("p");
+
+		pnlVideoContainer.className = "VideoContainerBottom";
+
+		var video = document.createElement("video");
+
+		video.style.display = "flex";
+		video.style.flexGrow = "1";
+
+		video.autoplay = false;
+		video.loop = false;
+		video.controls = false;
+		video.src = question.Video;
+
+		pnlVideoContainer.appendChild(video);
+		pnlLayout.appendChild(pnlVideoContainer);
+
+		var vcrOverlay = CreateVCROverlay(pnlLayout, video);
+
+		vcrOverlay.AnimateToPlay(video);
+
+		FadeBackgroundMusicVolumeTo(0);
+
+		video.addEventListener("ended", () => FadeBackgroundMusicVolumeTo(BackgroundMusicDefaultVolume));
+	}
+
+	pnlQuestion.appendChild(pnlLayout);
+
+	// Link up navigation.
+	next = () => ShowAnswer(questionIndex);
+
+	if (questionIndex > 0)
+		prev = () => { ScrollToPreviousQuestion(() => { ShowQuestion(questionIndex - 1); ShowAnswer(questionIndex - 1); }); }
+	else
+		prev = () => {};
+}
+
+function ShowAnswer(questionIndex)
+{
+	let pnlLayout = pnlQuestion.firstChild;
+	let pnlQuestionLayout;
+
+	while (pnlLayout.className === "QuestionPanelDecoration")
+		pnlLayout = pnlLayout.nextSibling;
+
+	// Darken the question, remove any video or image. Elements are inside a flexbox container.
+	let element = pnlLayout.firstChild;
+
+	while (element != null)
+	{
+		let nextElement = element.nextSibling;
+
+		if (element instanceof HTMLVideoElement)
+			element.stop();
+
+		if (element.className === "QuestionLayout")
+		{
+			pnlQuestionLayout = element;
+			element.style.opacity = 0.5;
+		}
+		else
+			pnlLayout.removeChild(element);
+
+		element = nextElement;
+	}
+
+	// Add the answer and associated video or image.
+	var answer = questions[questionIndex].Answer;
+
+	var pnlAnswerLayout = document.createElement("div");
+
+	pnlAnswerLayout.className = "AnswerLayout";
+
+	if ("QuestionText" in answer)
+	{
+		var lblQuestionText = pnlQuestionLayout.querySelector(".TriviaText");
+
+		lblQuestionText.innerHTML = answer.QuestionText;
+	}
+
+	var lblText = document.createElement("span");
+
+	lblText.className = "TriviaText";
+	lblText.innerHTML = answer.Text;
+
+	pnlAnswerLayout.appendChild(lblText);
+
+	if ("Video" in answer)
+	{
+		var pnlVideoContainer = document.createElement("p");
+
+		pnlVideoContainer.className = "VideoContainerSide";
+
+		var video = document.createElement("video");
+
+		video.style.display = "flex";
+		video.style.flexGrow = "1";
+
+		video.autoplay = false;
+		video.loop = false;
+		video.controls = false;
+		video.src = answer.Video;
+
+		pnlVideoContainer.appendChild(video);
+		pnlAnswerLayout.appendChild(pnlVideoContainer);
+
+		var vcrOverlay = CreateVCROverlay(pnlLayout, video);
+
+		vcrOverlay.AnimateToPlay(video);
+
+		FadeBackgroundMusicVolumeTo(0);
+
+		video.addEventListener("ended", () => FadeBackgroundMusicVolumeTo(BackgroundMusicDefaultVolume));
+	}
+
+	pnlLayout.appendChild(pnlAnswerLayout);
+
+	// Link up navigation.
+	if (questionIndex + 1 < questions.length)
+		next = () => ScrollToNextQuestion(() => ShowQuestion(questionIndex + 1));
+	else
+		next = () => {};
+
+	prev = () => ShowQuestion(questionIndex);
+}
+
+window.addEventListener(
+	"keydown",
+	(evt) =>
+	{
+		if (evt.keyCode == 37)
+			prev();
+		if (evt.keyCode == 39)
+			next();
+	});
+
+window.addEventListener(
+	"load",
+	() =>
+	{
+		cBackground = document.getElementById("cBackground");
+		pnlRoot = document.getElementById("pnlRoot");
+
+		setInterval(
+			() =>
+			{
+				ScrollBackground();
+				RenderBackground();
+			},
+			50);
+
+		fetch("questions.json").then(response => response.json()).then(
+			loadedQuestionsData =>
+			{
+				questions = loadedQuestionsData;
+
+				if ("Music" in questions[0])
+				{
+					PlayBackgroundMusicLoop(questions[0].Music);
+					questions.shift();
+				}
+
+				ShowQuestion(0);
+			});
+	});
+		</script>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body onmousedown="RenderBackground()">
+		<canvas id="cBackground" class="Background" width="1920" height="1080"></canvas>
+		<div class="Content" id="pnlRoot"></div>
+	</body>
+</html>
