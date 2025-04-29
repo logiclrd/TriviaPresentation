@@ -62,6 +62,8 @@ var backgroundScrollDZ = 2;
 var backgroundScrollDDZ = 0;
 var backgroundScrollNextFunctor = null;
 
+var backgroundScrollMaxT = 1;
+
 var scrolling = false;
 
 function ScrollBackground()
@@ -74,8 +76,11 @@ function ScrollBackground()
 	backgroundScrollX += backgroundScrollDX;
 	backgroundScrollZ += backgroundScrollDZ;
 
-	if ((backgroundScrollT >= 1) && (backgroundScrollNextFunctor != null))
+	if ((backgroundScrollT >= backgroundScrollMaxT) && (backgroundScrollNextFunctor != null))
+	{
+		backgroundScrollMaxT = 1;
 		backgroundScrollNextFunctor();
+	}
 }
 
 var cellWidth = 1920 / 4;
@@ -370,6 +375,41 @@ function ScrollToNextQuestion(finishedCallback)
 
 			backgroundScrollT = 0;
 			backgroundScrollDT = 0.1;
+
+			backgroundScrollNextFunctor =
+				() => FinishedScroll(finishedCallback);
+		};
+}
+
+function ScrollToSpecificQuestion(finishedCallback)
+{
+	ClearQuestion();
+
+	backgroundScrollDZ = 0;
+	backgroundScrollDDZ = 0;
+
+	backgroundScrollDX = 0;
+	backgroundScrollDDX = 22;
+
+	backgroundScrollT = 0;
+	backgroundScrollDT = 0.1;
+
+	backgroundScrollMaxT = 1.6;
+
+	scrolling = true;
+
+	backgroundScrollNextFunctor =
+		() =>
+		{
+			backgroundScrollDZ = 0;
+			backgroundScrollDDZ = 0;
+
+			backgroundScrollDDX = -22;
+
+			backgroundScrollT = 0;
+			backgroundScrollDT = 0.1;
+
+			backgroundScrollMaxT = 1.6;
 
 			backgroundScrollNextFunctor =
 				() => FinishedScroll(finishedCallback);
@@ -1051,6 +1091,16 @@ function ShowAnswer(questionIndex)
 
 	pnlAnswerLayout.appendChild(lblText);
 
+	if ("Subtext" in answer)
+	{
+		var lblSubtext = document.createElement("span");
+
+		lblSubtext.className = "TriviaText Sub";
+		lblSubtext.innerHTML = answer.Subtext;
+
+		lblText.appendChild(lblSubtext);
+	}
+
 	if ("Image" in answer)
 	{
 		let pnlImageContainer = document.createElement("p");
@@ -1119,6 +1169,11 @@ function ShowAnswer(questionIndex)
 	prev = () => ShowQuestion(questionIndex);
 }
 
+const KEY_LEFT = 37;
+const KEY_RIGHT = 39;
+const KEY_A = 65;
+const KEY_Z = 90;
+
 window.addEventListener(
 	"keydown",
 	(evt) =>
@@ -1129,6 +1184,17 @@ window.addEventListener(
 				prev();
 			if (evt.keyCode == 39)
 				next();
+
+			if (evt.ctrlKey && (evt.keyCode >= KEY_A) && (evt.keyCode <= KEY_Z))
+			{
+				let questionIndex = (evt.keyCode - KEY_A);
+
+				if (questionIndex < questions.length)
+				{
+					evt.preventDefault();
+					ScrollToSpecificQuestion(() => ShowQuestion(questionIndex));
+				}
+			}
 		}
 	});
 

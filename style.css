@@ -99,6 +99,14 @@ body
 	flex-grow: 1;
 }
 
+.Sub
+{
+	font-size: 30pt;
+	color: #ccc;
+	display: block;
+	margin-top: 1em;
+}
+
 .VideoContainerBottom
 {
 	flex-grow: 1;

@@ -53,12 +53,12 @@
 	},
 	{
 		"Text": "This 1995 film features not one, not two but three Buffy alumni &ndash; Eliza Dushku (Faith), Amber Benson (Tara) and Lindsay Crouse (Professor Walsh).",
-		"Video": "5-Question.mp4",
+		"Video": "6-Question.mp4",
 		"Comment": "clip from 0:10-0:27 https://www.youtube.com/watch?v=-l0uznoY77o&list=RD-l0uznoY77o&start_radio=1",
 		"Answer":
 		{
 			"Text": "<i>Bye Bye Love</i>",
-			"Image": "6-Answer.png"
+			"Video": "6-Answer.mp4"
 		}
 	},
 	{
@@ -96,12 +96,13 @@
 		}
 	},
 	{
-		"Text": "One of our event buttons this year utters this famous and very 1990s Buffy quote, \"If the apocalypse comes, ...</i>",
+		"Text": "One of our event buttons this year utters this famous and very 1990s Buffy quote, \"If the apocalypse comes, ...\"",
 		"Comment": "whole clip shown - https://www.youtube.com/watch?v=cDGOjq20QGc",
 		"Answer":
 		{
 			"Text": "<i>Beep Me</i>",
-			"Subtext": "Hands up in the audience if you're too young to know what a pager is"
+			"Subtext": "Hands up in the audience if you're too young to know what a pager is!",
+			"Image": "11-Answer.png"
 		}
 	},
 	{
