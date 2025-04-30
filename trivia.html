@@ -976,6 +976,40 @@ function CreateVCROverlay(pnlLayout, referenceVideoWithAbsolutePosition)
 	return vcrOverlay;
 }
 
+function PutStickerOnImage(image, sticker)
+{
+	var stickerImage = document.createElement("img");
+
+	stickerImage.src = sticker.Image;
+
+	if ("Width" in sticker)
+		stickerImage.style.width = sticker.Width;
+	if ("Height" in sticker)
+		stickerImage.style.height = sticker.Height;
+
+	var pnlCombiner = document.createElement("div");
+
+	image.parentNode.insertBefore(pnlCombiner, image);
+	image.parentNode.removeChild(image);
+
+	image.style.position = "relative";
+	image.style.left = "0px";
+	image.style.top = "0px";
+
+	pnlCombiner.style.position = "relative";
+	pnlCombiner.style.left = "0px";
+	pnlCombiner.style.top = "0px";
+
+	stickerImage.style.position = "absolute";
+	stickerImage.style.left = "0px";
+	stickerImage.style.top = "0px";
+	stickerImage.style.width = "100%";
+	stickerImage.style.height = "100%";
+
+	pnlCombiner.appendChild(image);
+	pnlCombiner.appendChild(stickerImage);
+}
+
 var prev = () => {};
 var next = () => {};
 
@@ -1042,6 +1076,32 @@ function ShowQuestion(questionIndex)
 	pnlQuestionLayout.appendChild(lblText);
 
 	pnlLayout.appendChild(pnlQuestionLayout);
+
+	if ("Image" in question)
+	{
+		let pnlImageContainer = document.createElement("p");
+
+		pnlImageContainer.className = "VideoContainerBottom";
+
+		let image = document.createElement("img");
+
+		image.style.display = "flex";
+		image.style.flexGrow = "1";
+		image.style.maxWidth = "100%";
+		image.style.maxHeight = "100%";
+		image.style.objectFit = "contain";
+
+		image.src = question.Image;
+
+		if ("MinImageWidth" in question)
+			pnlImageContainer.style.minWidth = question.MinImageWidth;
+
+		pnlImageContainer.appendChild(image);
+		pnlLayout.appendChild(pnlImageContainer);
+
+		if ("StickerOnImage" in question)
+			PutStickerOnImage(image, question.StickerOnImage);
+	}
 
 	if ("Video" in question)
 	{
@@ -1168,10 +1228,13 @@ function ShowAnswer(questionIndex)
 		image.src = answer.Image;
 
 		if ("MinImageWidth" in answer)
-			pnlImageContainer.style.minWidth = answer.MinVideoWidth;
+			pnlImageContainer.style.minWidth = answer.MinImageWidth;
 
 		pnlImageContainer.appendChild(image);
 		pnlAnswerLayout.appendChild(pnlImageContainer);
+
+		if ("StickerOnImage" in answer)
+			PutStickerOnImage(image, answer.StickerOnImage);
 	}
 
 	if ("Video" in answer)

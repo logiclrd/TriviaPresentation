@@ -187,23 +187,32 @@
 		"Answer":
 		{
 			"QuestionText": "Buffy tells Giles, \"Be kind, rewind.\" What does that mean?",
-			"Text": "Shows and movies used to come on <i>VHS tapes</i>. As they played, the tape moved from one reel to the other. It had to be \"rewound\" in order to be played again. Tapes could be rented, and some shops put stickers on to remind you to rewind before returning."
+			"Text": "Shows and movies used to come on <i>VHS tapes</i>. The tape played from one reel to the other. It had to be \"rewound\" in order to be played again. Tapes could be rented, and some shops put stickers on to remind to rewind!",
+			"TextLineHeight": 1,
+			"Image": "20-Answer.gif",
+			"StickerOnImage":
+			{
+				"Image": "BeKindRewind.svg"
+			}
 		}
 	},
 	{
 		"Text": "How about when Buffy says, \"I killed my Giga Pet\". What's that??",
 		"Answer":
 		{
-			"Text": "Simple electronic toys that displayed a little animal on their screen. You had to take good care of your pet, or it would become depressed or die. (They also die of old age.) You may have heard of a similar toy, the Tamagotchi."
+			"Text": "Simple electronic toys that displayed a little animal on their screen. You had to take good care of your pet, or it would become depressed or die. (They also die of old age.) You may have heard of a similar toy, the Tamagotchi.",
+			"Image": "21-Answer.gif"
 		}
 	},
 	{
 		"Text": "Lastly, what on Earth is this thing that falls to the ground and is an important part of the episode?",
 		"Comment": "Clip from Buffy s2 ep. 17, 43:17-43:31",
-		"Image": "22-Question.mp4",
+		"Image": "22-Question.png",
 		"Answer":
 		{
-			"Text": "Before USB drives, we stored computer files on \"floppy disks\" that contained a disc coated in a magnetic material. A \"disk drive\" would physically rotate the disk in order to access data. Even by the standards of the day, they were <i>very slow</i>."
+			"Text": "Before USB drives, we stored files on \"floppy disks\" that contained a disc coated in rust. \"Disk drives\" physically spun it in order to access data. Even by the standards of the day, they were <i>very slow</i>.",
+			"TextLineHeight": 1,
+			"Image": "22-Answer.png"
 		}
 	},
 	{
