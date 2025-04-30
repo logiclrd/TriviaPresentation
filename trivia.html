@@ -38,6 +38,36 @@ function PlayBackgroundMusicLoop(musicSrc)
 		.then(buffer => backgroundMusicContext.decodeAudioData(buffer, PlayLoop));
 }
 
+var preloads = [];
+
+function PreloadImage(imageSource)
+{
+	var img = new Image();
+
+	img.src = imageSource;
+
+	preloads.push(img);
+}
+
+function PreloadImages(item)
+{
+	if (Array.isArray(item))
+	{
+		for (let i=0; i < item.length; i++)
+			PreloadImages(item[i]);
+	}
+	else
+	{
+		if ("Image" in item)
+			PreloadImage(item.Image);
+
+		if ("Answer" in item)
+			PreloadImages(item.Answer);
+		if ("Credits" in item)
+			PreloadImages(item.Credits);
+	}
+}
+
 function FadeBackgroundMusicVolumeTo(targetVolume)
 {
 	backgroundMusicTargetVolume = targetVolume;
@@ -437,9 +467,11 @@ var LineMaxHeight = 80;
 
 function Decorate_Drawing(pnlQuestion, draw)
 {
+	var questionPanelHeight = 0.66 * 1080;
+
 	var pnlDecoration = CreateDecorationContainer(pnlQuestion);
 
-	var attachToBorderY = 400 - 800 * Math.trunc(Math.random() * 2);
+	var attachToBorderY = 0.5 * questionPanelHeight - questionPanelHeight * Math.trunc(Math.random() * 2);
 	var positionX = 1240 * Math.random() - 620;
 
 	var drawing = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -1003,6 +1035,9 @@ function ShowQuestion(questionIndex)
 	lblText.className = "TriviaText";
 	lblText.innerHTML = question.Text;
 
+	if ("TextLineHeight" in question)
+		lblText.style.lineHeight = question.TextLineHeight;
+
 	pnlQuestionLayout.appendChild(lblNumber);
 	pnlQuestionLayout.appendChild(lblText);
 
@@ -1026,6 +1061,9 @@ function ShowQuestion(questionIndex)
 		video.loop = false;
 		video.controls = false;
 		video.src = question.Video;
+
+		if ("VideoVolume" in question)
+			video.volume = question.VideoVolume;
 
 		pnlVideoContainer.appendChild(video);
 		pnlLayout.appendChild(pnlVideoContainer);
@@ -1098,6 +1136,9 @@ function ShowAnswer(questionIndex)
 	lblText.className = "TriviaText";
 	lblText.innerHTML = answer.Text;
 
+	if ("TextLineHeight" in answer)
+		lblText.style.lineHeight = answer.TextLineHeight;
+
 	pnlAnswerLayout.appendChild(lblText);
 
 	if ("Subtext" in answer)
@@ -1151,6 +1192,9 @@ function ShowAnswer(questionIndex)
 		video.loop = false;
 		video.controls = false;
 		video.src = answer.Video;
+
+		if ("VideoVolume" in answer)
+			video.volume = answer.VideoVolume;
 
 		if ("MinVideoWidth" in answer)
 			pnlVideoContainer.style.minWidth = answer.MinVideoWidth;
@@ -1453,6 +1497,9 @@ function PresentCreditsMain(credits, backgroundSVG)
 	// Play the credits music.
 	var audio = new Audio(credits.Music);
 
+	if ("MusicVolume" in credits)
+		audio.volume = credits.MusicVolume;
+
 	audio.play();
 
 	// Set up the background.
@@ -1582,9 +1629,14 @@ window.addEventListener(
 
 				if ("Music" in questions[0])
 				{
+					if ("MusicVolume" in questions[0])
+						backgroundMusicTargetVolume = BackgroundMusicDefaultVolume = questions[0].MusicVolume;
+
 					PlayBackgroundMusicLoop(questions[0].Music);
 					questions.shift();
 				}
+
+				PreloadImages(questions);
 
 				ShowQuestion(0);
 			});

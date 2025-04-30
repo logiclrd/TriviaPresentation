@@ -85,6 +85,7 @@
 		"Answer":
 		{
 			"Text": "<i>Clea Duvall</i>, who plays Marcie Ross, the invisible girl in Buffy Season 1, and <i>Katherine Towne</i>, who plays a vampire named Sunday in Buffy Season 4",
+			"TextLineHeight": 1.1,
 			"Video": "9-Answer.mp4",
 			"MinVideoWidth": "30vw"
 		}
@@ -105,7 +106,7 @@
 		{
 			"Text": "<i>Beep Me</i>",
 			"Subtext": "Hands up in the audience if you're too young to know what a pager is!",
-			"Image": "11-Answer.png"
+			"Image": "11-Answer.svg"
 		}
 	},
 	{
@@ -117,11 +118,12 @@
 		}
 	},
 	{
-		"Text": "Like older sister, like younger sister... The actors behind both Summers girls starred in commercials for which fast food hcain, exactly 10 years apart in 1981 and 1991?",
+		"Text": "Like older sister, like younger sister... The actors behind both Summers girls starred in commercials for which fast food chain, exactly 10 years apart in 1981 and 1991?",
 		"Comment": "Take a clip from Dawn's - https://www.youtube.com/watch?v=do4QbGcRwkI Take a clip from Buffy's - https://www.youtube.com/watch?v=-Ss7_5PSnyA ",
 		"Answer":
 		{
 			"Text": "<i>Burger King</i>",
+			"Subtext": "Michelle Trachtenberg was also in a commercial for Wendy's!",
 			"Video": "13-Answer.mp4"
 		}
 	},
@@ -131,7 +133,8 @@
 		"Answer":
 		{
 			"Text": "<i>Saving Private Ryan</i>, directed by Steven Spielberg",
-			"Video": "14-Answer.mp4"
+			"Video": "14-Answer.mp4",
+			"MinVideoWidth": "35vw"
 		}
 	},
 	{
@@ -164,10 +167,10 @@
 	{
 		"Text": "As most know, Buffy was a 1992 movie before it was a TV show! Name some big celebrity names to star in that movie.",
 		"Comment": "Clip from 1:22-1:53 https://www.youtube.com/watch?v=5xLV-FUBhkY;  ",
+		"Video": "18-Question.mp4",
 		"Answer":
 		{
-			"Text": "Kristy Swannson; Donald Sutherland; Paul Reubens; Luke Perry; Hilary Swank; David Arquette",
-			"Video": "18-Answer.mp4"
+			"Text": "We found: Kristy Swanson; Donald Sutherland; Paul Reubens; Luke Perry; Hilary Swank; David Arquette<br><br>Any others?"
 		}
 	},
 	{
@@ -209,12 +212,18 @@
 			{ "Heading": "Trivia Questions", "Text": "Kendra Monk" },
 			{ "Heading": "Tech", "Text": "Jonathan Gilbert" },
 			{ "Heading": "Music", "Text": "Jonathan Gilbert" },
-			{ "Heading": "Supervision", "Text": "Kaleesi" },
-			{ "Heading": "Supervision", "Text": "Kaleesi<br>Joss" },
+			{ "Heading": "Supervision", "Text": "Adriel" },
+			{ "Heading": "Supervision", "Text": "Adriel<br>Ellia" },
+			{ "Heading": "Supervision", "Text": "Adriel<br>Ellia<br>Joss" },
+			{ "Heading": "Supervision", "Text": "Adriel<br>Ellia<br>Joss<br>Kaleesi" },
+			{ "Heading": "Support", "Text": "Gravy", "Image": "Gravy.jpg" },
+			{ "Heading": "Support", "Text": "Jackie", "Image": "Jackie.png" },
+			{ "Heading": "Support", "Text": "Mishu", "Image": "Mishu.jpg" },
+			{ "Heading": "Support", "Text": "Moogle", "Image": "Moogle.png" },
 			{ "Heading": "Support", "Text": "Pumpkin", "Image": "Pumpkin.jpg" },
 			{ "Heading": "Chief Executive Director in Charge of the Llamas", "Text": "Daniel Raymond" },
 			{ "Heading": "Everything Else", "Text": "You Fabulous Folk!" },
-			{ "Text": "Thank you for being a part of this event and supporting Trans Manitoba!", "Style": "Centre" },
+			{ "Text": "Thank you for being a part of this event and supporting Trans Manitoba!", "Style": "Centre White" },
 			{ "Text": "This trivia programme is known to the State of California to cause laughter.", "Style": "Centre Subtitle" },
 			{}
 		],

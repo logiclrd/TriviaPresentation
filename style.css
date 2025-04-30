@@ -2,6 +2,7 @@ body
 {
 	background: black;
 	overflow: hidden;
+	cursor: none;
 }
 
 .Background
@@ -178,6 +179,11 @@ video
 	font-family: "Eurocine";
 	font-size: 50pt;
 	color: black;
+}
+
+.CreditText.White
+{
+	color: white;
 }
 
 .CreditText.Centre
