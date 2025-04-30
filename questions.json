@@ -85,14 +85,17 @@
 		"Answer":
 		{
 			"Text": "<i>Clea Duvall</i>, who plays Marcie Ross, the invisible girl in Buffy Season 1, and <i>Katherine Towne</i>, who plays a vampire named Sunday in Buffy Season 4",
-			"Video": "9-Answer.mp4"
+			"Video": "9-Answer.mp4",
+			"MinVideoWidth": "30vw"
 		}
 	},
 	{
 		"Text": "Another actor in this film was not in Buffy, but she was originally thought of for the role of Willow and turned it down!",
 		"Answer":
 		{
-			"Text": "<i>Melanie Lynskey</i>"
+			"Text": "<i>Melanie Lynskey</i>, who played Hilary in But I'm a Cheerleader.",
+			"Video": "10-Answer.mp4",
+			"MinVideoWidth": "35vw"
 		}
 	},
 	{
@@ -199,5 +202,34 @@
 		{
 			"Text": "Before USB drives, we stored computer files on \"floppy disks\" that contained a disc coated in a magnetic material. A \"disk drive\" would physically rotate the disk in order to access data. Even by the standards of the day, they were <i>very slow</i>."
 		}
+	},
+	{
+		"Credits":
+		[
+			{ "Heading": "Trivia Questions", "Text": "Kendra Monk" },
+			{ "Heading": "Tech", "Text": "Jonathan Gilbert" },
+			{ "Heading": "Music", "Text": "Jonathan Gilbert" },
+			{ "Heading": "Supervision", "Text": "Kaleesi" },
+			{ "Heading": "Supervision", "Text": "Kaleesi<br>Joss" },
+			{ "Heading": "Support", "Text": "Pumpkin", "Image": "Pumpkin.jpg" },
+			{ "Heading": "Chief Executive Director in Charge of the Llamas", "Text": "Daniel Raymond" },
+			{ "Heading": "Everything Else", "Text": "You Fabulous Folk!" },
+			{ "Text": "Thank you for being a part of this event and supporting Trans Manitoba!", "Style": "Centre" },
+			{ "Text": "This trivia programme is known to the State of California to cause laughter.", "Style": "Centre Subtitle" },
+			{}
+		],
+		"Music": "Credits.flac",
+		"StartTime": 2.85,
+		"EndTime" : 26,
+		"Background": "Arcade.svg",
+		"BackgroundColourStart": "#E5E5E5",
+		"BackgroundColourEnd": "black",
+		"BackgroundColourChangeTime": 4,
+		"BackgroundEffects":
+		[
+			{ "Effect": "PiecesFlyIn" },
+			{ "Effect": "Desaturation", "KeyFrames": [ [0.0, 1.0], [21.0, 1.0], [23.0, 0.0] ] },
+			{ "Effect": "Brightness", "KeyFrames": [ [0.0, 0.0], [2.84, 0.0], [2.85, 1.0], [25.0, 1.0], [27.0, 0.0] ] }
+		]
 	}
 ]

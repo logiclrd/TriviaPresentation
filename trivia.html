@@ -64,7 +64,10 @@ var backgroundScrollNextFunctor = null;
 
 var backgroundScrollMaxT = 1;
 
+var animatedBackgroundInterval = null;
+
 var scrolling = false;
+var inCredits = false;
 
 function ScrollBackground()
 {
@@ -964,13 +967,19 @@ function ShowQuestion(questionIndex)
 
 	ClearQuestion();
 
+	var question = questions[questionIndex];
+
+	if ("Credits" in question)
+	{
+		PresentCredits(question);
+		return;
+	}
+
 	pnlQuestion = GenerateQuestionPanel();
 
 	pnlRoot.appendChild(pnlQuestion);
 
 	// Add the question and associated video or image.
-	var question = questions[questionIndex];
-
 	var pnlLayout = document.createElement("div");
 
 	pnlLayout.style.width = "calc(75vw - 24px)";
@@ -1162,11 +1171,364 @@ function ShowAnswer(questionIndex)
 
 	// Link up navigation.
 	if (questionIndex + 1 < questions.length)
-		next = () => ScrollToNextQuestion(() => ShowQuestion(questionIndex + 1));
+	{
+		var nextQuestion = questions[questionIndex + 1];
+
+		if ("Credits" in nextQuestion)
+			next = () => PresentCredits(nextQuestion);
+		else
+			next = () => ScrollToNextQuestion(() => ShowQuestion(questionIndex + 1));
+	}
 	else
 		next = () => {};
 
 	prev = () => ShowQuestion(questionIndex);
+}
+
+function PresentCredits(credits)
+{
+	inCredits = true;
+
+	ClearQuestion();
+
+	// Kill the main music.
+	backgroundMusicGain.gain.setValueAtTime(backgroundMusicGain.gain.value, backgroundMusicContext.currentTime);
+	backgroundMusicGain.gain.linearRampToValueAtTime(0, backgroundMusicContext.currentTime + 0.8);
+
+	fetch(credits.Background)
+	.then(response => response.text())
+	.then(
+		backgroundSVG =>
+		{
+			if ("BackgroundColourStart" in credits)
+				document.body.style.background = credits.BackgroundColourStart;
+			else
+				document.body.style.background = "white";
+
+			let backgroundOpacity = 1.0;
+
+			function FadeOutBackground()
+			{
+				backgroundOpacity = Math.max(0, backgroundOpacity - 0.03);
+
+				cBackground.style.opacity = backgroundOpacity;
+
+				if (backgroundOpacity > 0)
+					setTimeout(FadeOutBackground, 20);
+				else
+					setTimeout(() => PresentCreditsMain(credits, backgroundSVG), 800);
+			}
+
+			FadeOutBackground();
+		});
+}
+
+const PieceAnimationDuration = 4.5;
+
+function ApplyBackgroundEffect_PiecesFlyIn(backgroundImage, startTime, endTime)
+{
+	let animationDuration = endTime - startTime;
+
+	var pieces = [];
+
+	function FindAllPaths(node)
+	{
+		while (node != null)
+		{
+			if (node instanceof SVGPathElement)
+				pieces.push(node);
+			else if (node.firstChild)
+				FindAllPaths(node.firstChild);
+
+			node = node.nextSibling;
+		}
+	}
+
+	FindAllPaths(backgroundImage);
+
+	// Randomize the order that pieces arrive in.
+	for (let i = pieces.length - 1; i > 0; i--)
+	{
+		let j = Math.floor(Math.random() * i);
+
+		[pieces[i], pieces[j]] = [pieces[j], pieces[i]];
+	}
+
+	// Set up a master animation that will trigger them all simultaneously.
+	let masterAnimationID = "a" + Math.random().toString().replace(".", "");
+	let masterAnimation = null;
+
+	// Configure each piece's animation.
+	for (let i = 0; i < pieces.length; i++)
+	{
+		let animationCompletionTime = (i + 1) * animationDuration / pieces.length;
+
+		let animationStartTime = animationCompletionTime - PieceAnimationDuration;
+
+		let offsetAngle = Math.random() * 6.283185;
+
+		let offsetX = 2000 * Math.cos(offsetAngle);
+		let offsetY = 2000 * Math.sin(offsetAngle);
+
+		let duration = PieceAnimationDuration;
+
+		// Animations don't gracefully handle start times that are in the past of the trigger, so we need to chop off
+		// the bit that's in the past.
+		if (animationStartTime < 0)
+		{
+			var t = -animationStartTime / PieceAnimationDuration;
+
+			offsetX *= 1 - t;
+			offsetY *= 1 - t;
+			duration *= 1 - t;
+
+			animationStartTime = 0;
+		}
+
+		pieces[i].setAttribute("transform", `translate(${offsetX} ${offsetY})`);
+
+		var animateTransform = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
+
+		// The first piece will be the "master" animation. Its trigger is "indefinite", meaning manual. All other pieces
+		// have animations whose "begin" trigger is "masterid+3s", e.g.
+		if ((masterAnimation == null) && (animationStartTime >= 0))
+		{
+			masterAnimation = animateTransform;
+
+			animateTransform.setAttribute("id", masterAnimationID);
+			animateTransform.setAttribute("begin", "indefinite");
+		}
+		else
+			animateTransform.setAttribute("begin", masterAnimationID + ".begin" + (animationStartTime >= 0 ? "+" : "") + animationStartTime + "s");
+
+		animateTransform.setAttribute("attributeName", "transform");
+		animateTransform.setAttribute("dur", duration + "s");
+		animateTransform.setAttribute("type", "translate");
+		animateTransform.setAttribute("from", `${offsetX} ${offsetY}`);
+		animateTransform.setAttribute("to", "0 0");
+		animateTransform.setAttribute("repeatCount", "1");
+		animateTransform.setAttribute("fill", "freeze");
+
+		pieces[i].appendChild(animateTransform);
+	}
+
+	// Kick it all off.
+	setTimeout(() => masterAnimation.beginElement(), startTime * 1000);
+}
+
+function ApplyBackgroundEffect_Desaturation(backgroundImage, keyFrames, addCSSAnimationDirective)
+{
+	var keyFramesID = "K" + Math.random().toString().replace(".", "");
+
+	var keyFramesCSS = ["@keyframes " + keyFramesID + "{"];
+
+	let endTime = 0.0;
+
+	for (let i = 0; i < keyFrames.length; i++)
+		endTime = Math.max(endTime, keyFrames[i][0]);
+
+	for (let i = 0; i < keyFrames.length; i++)
+	{
+		let offset = keyFrames[i][0];
+		let value = keyFrames[i][1];
+
+		let offsetPercentage = 100 * offset / endTime;
+
+		let satCon = 1.0 - 0.9 * value;
+		let bright = value + 1.0;
+
+		keyFramesCSS.push(`${offsetPercentage}% { filter: saturate(${satCon}) contrast(${satCon}) brightness(${bright}) }`);
+	}
+
+	keyFramesCSS.push("}");
+
+	keyFramesCSS = keyFramesCSS.join("");
+
+	var keyFramesStyle = document.createElement("style");
+
+	keyFramesStyle.textContent = keyFramesCSS;
+
+	document.head.appendChild(keyFramesStyle);
+
+	addCSSAnimationDirective(`${keyFramesID} ${endTime}s linear forwards 1`);
+}
+
+function ApplyBackgroundEffect_Brightness(backgroundImage, keyFrames, addCSSAnimationDirective)
+{
+	var keyFramesID = "K" + Math.random().toString().replace(".", "");
+
+	var keyFramesCSS = ["@keyframes " + keyFramesID + "{"];
+
+	let endTime = 0.0;
+
+	for (let i = 0; i < keyFrames.length; i++)
+		endTime = Math.max(endTime, keyFrames[i][0]);
+
+	for (let i = 0; i < keyFrames.length; i++)
+	{
+		let offset = keyFrames[i][0];
+		let value = keyFrames[i][1];
+
+		let offsetPercentage = 100 * offset / endTime;
+
+		keyFramesCSS.push(`${offsetPercentage}% { opacity: ${value} }`);
+	}
+
+	keyFramesCSS.push("}");
+
+	keyFramesCSS = keyFramesCSS.join("");
+
+	var keyFramesStyle = document.createElement("style");
+
+	keyFramesStyle.textContent = keyFramesCSS;
+
+	document.head.appendChild(keyFramesStyle);
+
+	addCSSAnimationDirective(`${keyFramesID} ${endTime}s linear forwards 1`);
+}
+
+function ApplyBackgroundEffect(backgroundImage, effect, startTime, endTime, addCSSAnimationDirective)
+{
+	let keyFrames = null;
+
+	if ("KeyFrames" in effect)
+		keyFrames = effect.KeyFrames;
+
+	switch (effect.Effect)
+	{
+		case "PiecesFlyIn": ApplyBackgroundEffect_PiecesFlyIn(backgroundImage, startTime, endTime); break;
+		case "Desaturation": ApplyBackgroundEffect_Desaturation(backgroundImage, keyFrames, addCSSAnimationDirective); break;
+		case "Brightness": ApplyBackgroundEffect_Brightness(backgroundImage, keyFrames, addCSSAnimationDirective); break;
+	}
+}
+
+function PresentCredit(pnlCredit, credit)
+{
+	while (pnlCredit.firstChild)
+		pnlCredit.removeChild(pnlCredit.firstChild);
+
+	if ("Heading" in credit)
+	{
+		var pHeading = document.createElement("p");
+
+		pHeading.className = "CreditHeading";
+		pHeading.innerHTML = credit.Heading;
+
+		pnlCredit.appendChild(pHeading);
+	}
+
+	if ("Text" in credit)
+	{
+		var sText = document.createElement("span");
+
+		sText.innerHTML = credit.Text;
+
+		var pText = document.createElement("p");
+
+		pText.className = "CreditText";
+		pText.appendChild(sText);
+
+		if ("Style" in credit)
+			pText.className = `${pText.className} ${credit.Style}`;
+
+		pnlCredit.appendChild(pText);
+	}
+
+	if ("Image" in credit)
+	{
+		var imgImage = document.createElement("img");
+
+		imgImage.className = "CreditImage";
+		imgImage.src = credit.Image;
+
+		pnlCredit.appendChild(imgImage);
+	}
+}
+
+function PresentCreditsMain(credits, backgroundSVG)
+{
+	let startTime = parseFloat(credits.StartTime);
+	let endTime = parseFloat(credits.EndTime);
+
+	// Play the credits music.
+	var audio = new Audio(credits.Music);
+
+	audio.play();
+
+	// Set up the background.
+	cBackground.parentNode.removeChild(cBackground);
+
+	if (animatedBackgroundInterval != null)
+	{
+		clearInterval(animatedBackgroundInterval);
+		animatedBackgroundInterval = null;
+	}
+
+	var backgroundImage = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+	document.body.insertBefore(backgroundImage, document.body.firstChild);
+
+	backgroundImage.outerHTML = backgroundSVG;
+
+	backgroundImage = document.body.firstElementChild;
+
+	backgroundImage.className = "Background";
+	backgroundImage.style.position = "absolute";
+	backgroundImage.style.left = "0";
+	backgroundImage.style.top = "0";
+
+	if ("BackgroundColourEnd" in credits)
+	{
+		function ChangeBackgroundColour()
+		{
+			document.body.style.background = credits.BackgroundColourEnd;
+		}
+
+		if ("BackgroundColourChangeTime" in credits)
+			setTimeout(ChangeBackgroundColour, credits.BackgroundColourChangeTime * 1000);
+		else
+			ChangeBackgroundColour();
+	}
+
+	if ("BackgroundEffects" in credits)
+	{
+		var cssAnimationDirectives = [];
+
+		function AddCSSAnimationDirective(directive) { cssAnimationDirectives.push(directive); }
+
+		credits.BackgroundEffects.forEach(effect => ApplyBackgroundEffect(backgroundImage, effect, startTime, endTime, AddCSSAnimationDirective));
+
+		backgroundImage.style.animation = cssAnimationDirectives.join(",");
+	}
+
+	// Set up to present the actual credits.
+	let creditsDuration = endTime - startTime;
+	let creditIndex = 0;
+
+	let pnlCredit = document.createElement("div");
+
+	pnlCredit.className = "Credit";
+
+	document.body.appendChild(pnlCredit);
+
+	setTimeout(
+		() =>
+		{
+			PresentCredit(pnlCredit, credits.Credits[0]);
+
+			var creditIntervalID = setInterval(
+				() =>
+				{
+					creditIndex++;
+
+					PresentCredit(pnlCredit, credits.Credits[creditIndex]);
+
+					if (creditIndex + 1 >= credits.Credits.length)
+						clearInterval(creditIntervalID);
+				},
+				1000 * creditsDuration / credits.Credits.length);
+		},
+		1000 * startTime);
 }
 
 const KEY_LEFT = 37;
@@ -1178,7 +1540,7 @@ window.addEventListener(
 	"keydown",
 	(evt) =>
 	{
-		if (!scrolling)
+		if (!scrolling && !inCredits)
 		{
 			if (evt.keyCode == 37)
 				prev();
@@ -1205,7 +1567,7 @@ window.addEventListener(
 		cBackground = document.getElementById("cBackground");
 		pnlRoot = document.getElementById("pnlRoot");
 
-		setInterval(
+		animatedBackgroundInterval = setInterval(
 			() =>
 			{
 				ScrollBackground();
@@ -1231,7 +1593,7 @@ window.addEventListener(
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body onmousedown="RenderBackground()">
-		<canvas id="cBackground" class="Background" width="1920" height="1080"></canvas>
+		<canvas id="cBackground" class="Background Blur" width="1920" height="1080"></canvas>
 		<div class="Content" id="pnlRoot"></div>
 	</body>
 </html>
