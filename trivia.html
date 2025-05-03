@@ -79,6 +79,8 @@ function FadeBackgroundMusicVolumeTo(targetVolume)
 	}
 }
 
+var DuringQuestionScrollSpeed = 0.2;
+
 var ambientColour = "rgb(124 98 255 / 0.274)";
 
 var backgroundScrollX = 0;
@@ -88,7 +90,7 @@ var backgroundScrollT = 0;
 var backgroundScrollDT = 0;
 var backgroundScrollDX = 0;
 var backgroundScrollDDX = 0;
-var backgroundScrollDZ = 2;
+var backgroundScrollDZ = DuringQuestionScrollSpeed;
 var backgroundScrollDDZ = 0;
 var backgroundScrollNextFunctor = null;
 
@@ -328,7 +330,7 @@ function RenderBackground()
 
 function ScrollDuringQuestion()
 {
-	backgroundScrollDZ = 2;
+	backgroundScrollDZ = DuringQuestionScrollSpeed;
 	backgroundScrollDDZ = 0;
 
 	backgroundScrollDX = 0;
@@ -467,7 +469,7 @@ var LineMaxHeight = 80;
 
 function Decorate_Drawing(pnlQuestion, draw)
 {
-	var questionPanelHeight = 0.66 * 1080;
+	var questionPanelHeight = 0.75 * 1080;
 
 	var pnlDecoration = CreateDecorationContainer(pnlQuestion);
 
@@ -1026,12 +1028,36 @@ function ClearQuestion()
 	}
 }
 
+var pnlQuestionRootLayout;
+var pnlQuestionVideoContainer;
+var questionVideo;
+
+function PlayQuestionVideo()
+{
+	if (pnlQuestionVideoContainer != null)
+		pnlQuestionVideoContainer.style.opacity = 1;
+
+	if (questionVideo != null)
+	{
+		var vcrOverlay = CreateVCROverlay(pnlQuestionRootLayout, questionVideo);
+
+		vcrOverlay.AnimateToPlay(questionVideo);
+
+		FadeBackgroundMusicVolumeTo(0);
+
+		questionVideo.addEventListener("ended", () => FadeBackgroundMusicVolumeTo(BackgroundMusicDefaultVolume));
+	}
+}
+
 function ShowQuestion(questionIndex)
 {
 	// Prepare a blank slate.
 	FadeBackgroundMusicVolumeTo(BackgroundMusicDefaultVolume);
 
 	ClearQuestion();
+
+	pnlQuestionVideoContainer = null;
+	questionVideo = null;
 
 	var question = questions[questionIndex];
 
@@ -1105,36 +1131,35 @@ function ShowQuestion(questionIndex)
 
 	if ("Video" in question)
 	{
-		var pnlVideoContainer = document.createElement("p");
+		pnlQuestionRootLayout = pnlLayout;
 
-		pnlVideoContainer.className = "VideoContainerBottom";
+		pnlQuestionVideoContainer = document.createElement("p");
 
-		var video = document.createElement("video");
+		pnlQuestionVideoContainer.className = "VideoContainerBottom";
 
-		video.style.display = "flex";
-		video.style.flexGrow = "1";
-		video.style.maxWidth = "100%";
-		video.style.maxHeight = "100%";
-		video.style.objectFit = "contain";
+		questionVideo = document.createElement("video");
 
-		video.autoplay = false;
-		video.loop = false;
-		video.controls = false;
-		video.src = question.Video;
+		questionVideo.style.display = "flex";
+		questionVideo.style.flexGrow = "1";
+		questionVideo.style.maxWidth = "100%";
+		questionVideo.style.maxHeight = "100%";
+		questionVideo.style.objectFit = "contain";
+
+		questionVideo.autoplay = false;
+		questionVideo.loop = false;
+		questionVideo.controls = false;
+		questionVideo.src = question.Video;
 
 		if ("VideoVolume" in question)
-			video.volume = question.VideoVolume;
+			questionVideo.volume = question.VideoVolume;
 
-		pnlVideoContainer.appendChild(video);
-		pnlLayout.appendChild(pnlVideoContainer);
+		pnlQuestionVideoContainer.style.opacity = 0;
 
-		var vcrOverlay = CreateVCROverlay(pnlLayout, video);
+		pnlQuestionVideoContainer.appendChild(questionVideo);
+		pnlLayout.appendChild(pnlQuestionVideoContainer);
 
-		vcrOverlay.AnimateToPlay(video);
-
-		FadeBackgroundMusicVolumeTo(0);
-
-		video.addEventListener("ended", () => FadeBackgroundMusicVolumeTo(BackgroundMusicDefaultVolume));
+		if (("VideoAutoPlay" in question) && question.VideoAutoPlay)
+			PlayQuestionVideo();
 	}
 
 	pnlQuestion.appendChild(pnlLayout);
@@ -1157,6 +1182,9 @@ function ShowAnswer(questionIndex)
 		pnlLayout = pnlLayout.nextSibling;
 
 	// Darken the question, remove any video or image. Elements are inside a flexbox container.
+	pnlQuestionVideoContainer = null;
+	questionVideo = null;
+
 	let element = pnlLayout.firstChild;
 
 	while (element != null)
@@ -1643,6 +1671,7 @@ function PresentCreditsMain(credits, backgroundSVG)
 
 const KEY_LEFT = 37;
 const KEY_RIGHT = 39;
+const KEY_SPACE = 32;
 const KEY_A = 65;
 const KEY_Z = 90;
 
@@ -1652,10 +1681,12 @@ window.addEventListener(
 	{
 		if (!scrolling && !inCredits)
 		{
-			if (evt.keyCode == 37)
+			if (evt.keyCode == KEY_LEFT)
 				prev();
-			if (evt.keyCode == 39)
+			if (evt.keyCode == KEY_RIGHT)
 				next();
+			if (evt.keyCode == KEY_SPACE)
+				PlayQuestionVideo();
 
 			if (evt.ctrlKey && (evt.keyCode >= KEY_A) && (evt.keyCode <= KEY_Z))
 			{
