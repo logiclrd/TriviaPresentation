@@ -1148,6 +1148,7 @@ function ShowQuestion(questionIndex)
 		questionVideo.autoplay = false;
 		questionVideo.loop = false;
 		questionVideo.controls = false;
+		questionVideo.disableRemotePlayback = true;
 		questionVideo.src = question.Video;
 
 		if ("VideoVolume" in question)
@@ -1282,6 +1283,7 @@ function ShowAnswer(questionIndex)
 		video.autoplay = false;
 		video.loop = false;
 		video.controls = false;
+		video.disableRemotePlayback = true;
 		video.src = answer.Video;
 
 		if ("VideoVolume" in answer)
@@ -1327,8 +1329,11 @@ function PresentCredits(credits)
 	ClearQuestion();
 
 	// Kill the main music.
-	backgroundMusicGain.gain.setValueAtTime(backgroundMusicGain.gain.value, backgroundMusicContext.currentTime);
-	backgroundMusicGain.gain.linearRampToValueAtTime(0, backgroundMusicContext.currentTime + 0.8);
+	if (backgroundMusicGain)
+	{
+		backgroundMusicGain.gain.setValueAtTime(backgroundMusicGain.gain.value, backgroundMusicContext.currentTime);
+		backgroundMusicGain.gain.linearRampToValueAtTime(0, backgroundMusicContext.currentTime + 0.8);
+	}
 
 	fetch(credits.Background)
 	.then(response => response.text())

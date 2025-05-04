@@ -1,8 +1,5 @@
 [
 	{
-		"Music": "MusicLoop.wav"
-	},
-	{
 		"Text": "Before she slew vampires, Sarah Michelle Gellar appeared in this soap opera in the 1990s.",
 		"Video": "1-Question.mp4",
 		"Comment": "Can include clip - 3:42-3:58 https://www.youtube.com/watch?v=IZG0L46nuD4 / Also possible clip source: https://archive.org/details/all-my-children-august-12-1994",
@@ -54,12 +51,11 @@
 	},
 	{
 		"Text": "This 1995 film features not one, not two but three Buffy alumnae &ndash; Eliza Dushku (Faith), Amber Benson (Tara) and Lindsay Crouse (Professor Walsh).",
-		"Video": "6-Question.mp4",
 		"Comment": "clip from 0:10-0:27 https://www.youtube.com/watch?v=-l0uznoY77o&list=RD-l0uznoY77o&start_radio=1",
 		"Answer":
 		{
 			"Text": "<i>Bye Bye Love</i>",
-			"Video": "6-Answer.mp4"
+			"Video": "6-Question.mp4"
 		}
 	},
 	{
@@ -154,15 +150,6 @@
 		{
 			"Text": "... the softer side of <i>Sears</i>",
 			"Video": "16-Answer.mp4"
-		}
-	},
-	{
-		"Text": "When we try to explain to others what this show is, we often say it's sort of like screenings of the Rocky Horror Picture Show. Does anyone know what Buffy star is known for starring in Rocky Horror in London in 1990-1991?",
-		"Comment": "Clip from 3:55-4:42 https://www.youtube.com/watch?v=-LH43hTh5KI&list=RD-LH43hTh5KI&start_radio=1 ",
-		"Answer":
-		{
-			"Text": "<i>Anthony Stewart Head</i> gave a thrilling live action performance of Dr. Frank-N-Furter",
-			"Video": "17-Answer.mp4"
 		}
 	},
 	{
