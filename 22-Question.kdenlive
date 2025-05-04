@@ -1,0 +1,659 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mlt LC_NUMERIC="C" producer="main_bin" root="/DrBuffy/7-Trivia" version="7.28.0">
+ <profile colorspace="601" description="702x576 23.98fps" display_aspect_den="144" display_aspect_num="187" frame_rate_den="1001" frame_rate_num="24000" height="576" progressive="1" sample_aspect_den="351" sample_aspect_num="374" width="702"/>
+ <producer id="producer0" in="00:00:00.000" out="00:06:20.979">
+  <property name="length">2147483647</property>
+  <property name="eof">continue</property>
+  <property name="resource">black</property>
+  <property name="aspect_ratio">1</property>
+  <property name="mlt_service">color</property>
+  <property name="kdenlive:playlistid">black_track</property>
+  <property name="mlt_image_format">rgba</property>
+  <property name="set.test_audio">0</property>
+ </producer>
+ <playlist id="playlist0">
+  <property name="kdenlive:audio_track">1</property>
+ </playlist>
+ <playlist id="playlist1">
+  <property name="kdenlive:audio_track">1</property>
+ </playlist>
+ <tractor id="tractor0" in="00:00:00.000">
+  <property name="kdenlive:audio_track">1</property>
+  <property name="kdenlive:trackheight">75</property>
+  <property name="kdenlive:timeline_active">1</property>
+  <property name="kdenlive:collapsed">0</property>
+  <property name="kdenlive:thumbs_format"/>
+  <property name="kdenlive:audio_rec"/>
+  <track hide="video" producer="playlist0"/>
+  <track hide="video" producer="playlist1"/>
+  <filter id="filter0">
+   <property name="window">75</property>
+   <property name="max_gain">20dB</property>
+   <property name="mlt_service">volume</property>
+   <property name="internal_added">237</property>
+   <property name="disable">1</property>
+  </filter>
+  <filter id="filter1">
+   <property name="channel">-1</property>
+   <property name="mlt_service">panner</property>
+   <property name="internal_added">237</property>
+   <property name="start">0.5</property>
+   <property name="disable">1</property>
+  </filter>
+  <filter id="filter2">
+   <property name="iec_scale">0</property>
+   <property name="mlt_service">audiolevel</property>
+   <property name="dbpeak">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </tractor>
+ <chain id="chain0" out="00:43:28.487">
+  <property name="length">62542</property>
+  <property name="eof">pause</property>
+  <property name="resource">Source/Buffy.S02E17.Passion.mkv</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="format">3</property>
+  <property name="audio_index">1</property>
+  <property name="video_index">0</property>
+  <property name="vstream">0</property>
+  <property name="astream">0</property>
+  <property name="kdenlive:control_uuid">{e65576a3-f837-4ec9-a5e1-12929a34096f}</property>
+  <property name="kdenlive:id">4</property>
+  <property name="kdenlive:clip_type">0</property>
+  <property name="kdenlive:file_size">525154065</property>
+  <property name="kdenlive:file_hash">d18c61a40c5227f9369ed9a2621666f2</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:audio_max1">168</property>
+  <property name="meta.media.nb_streams">3</property>
+  <property name="meta.media.0.stream.type">video</property>
+  <property name="meta.media.0.stream.frame_rate">23.976</property>
+  <property name="meta.media.0.stream.sample_aspect_ratio">1.06553</property>
+  <property name="meta.media.0.codec.width">702</property>
+  <property name="meta.media.0.codec.height">576</property>
+  <property name="meta.media.0.codec.rotate">0</property>
+  <property name="meta.media.0.codec.pix_fmt">yuv420p</property>
+  <property name="meta.media.0.codec.sample_aspect_ratio">1.06667</property>
+  <property name="meta.media.0.codec.colorspace">601</property>
+  <property name="meta.media.0.codec.color_trc">1</property>
+  <property name="meta.media.0.codec.name">h264</property>
+  <property name="meta.media.0.codec.long_name">H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.BPS.markup">1415199</property>
+  <property name="meta.attr.0.stream.BPS-eng.markup">1415199</property>
+  <property name="meta.attr.0.stream.DURATION.markup">00:43:28.523000000</property>
+  <property name="meta.attr.0.stream.DURATION-eng.markup">00:43:28.523000000</property>
+  <property name="meta.attr.0.stream.NUMBER_OF_FRAMES.markup">62542</property>
+  <property name="meta.attr.0.stream.NUMBER_OF_FRAMES-eng.markup">62542</property>
+  <property name="meta.attr.0.stream.NUMBER_OF_BYTES.markup">461447572</property>
+  <property name="meta.attr.0.stream.NUMBER_OF_BYTES-eng.markup">461447572</property>
+  <property name="meta.attr.0.stream._STATISTICS_WRITING_APP.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.0.stream._STATISTICS_WRITING_APP-eng.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.0.stream._STATISTICS_WRITING_DATE_UTC.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.0.stream._STATISTICS_WRITING_DATE_UTC-eng.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.0.stream._STATISTICS_TAGS.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.attr.0.stream._STATISTICS_TAGS-eng.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.media.1.stream.type">audio</property>
+  <property name="meta.media.1.codec.sample_fmt">fltp</property>
+  <property name="meta.media.1.codec.sample_rate">48000</property>
+  <property name="meta.media.1.codec.channels">2</property>
+  <property name="meta.media.1.codec.layout">stereo</property>
+  <property name="meta.media.1.codec.name">ac3</property>
+  <property name="meta.media.1.codec.long_name">ATSC A/52A (AC-3)</property>
+  <property name="meta.media.1.codec.bit_rate">192000</property>
+  <property name="meta.attr.1.stream.language.markup">eng</property>
+  <property name="meta.attr.1.stream.BPS.markup">192000</property>
+  <property name="meta.attr.1.stream.BPS-eng.markup">192000</property>
+  <property name="meta.attr.1.stream.DURATION.markup">00:43:28.480000000</property>
+  <property name="meta.attr.1.stream.DURATION-eng.markup">00:43:28.480000000</property>
+  <property name="meta.attr.1.stream.NUMBER_OF_FRAMES.markup">81515</property>
+  <property name="meta.attr.1.stream.NUMBER_OF_FRAMES-eng.markup">81515</property>
+  <property name="meta.attr.1.stream.NUMBER_OF_BYTES.markup">62603520</property>
+  <property name="meta.attr.1.stream.NUMBER_OF_BYTES-eng.markup">62603520</property>
+  <property name="meta.attr.1.stream._STATISTICS_WRITING_APP.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.1.stream._STATISTICS_WRITING_APP-eng.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.1.stream._STATISTICS_WRITING_DATE_UTC.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.1.stream._STATISTICS_WRITING_DATE_UTC-eng.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.1.stream._STATISTICS_TAGS.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.attr.1.stream._STATISTICS_TAGS-eng.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.media.2.codec.name">dvdsub</property>
+  <property name="meta.media.2.codec.long_name">DVD subtitles</property>
+  <property name="meta.media.2.codec.bit_rate">0</property>
+  <property name="meta.attr.2.stream.language.markup">eng</property>
+  <property name="meta.attr.2.stream.BPS.markup">1633</property>
+  <property name="meta.attr.2.stream.BPS-eng.markup">1633</property>
+  <property name="meta.attr.2.stream.DURATION.markup">00:43:05.285000000</property>
+  <property name="meta.attr.2.stream.DURATION-eng.markup">00:43:05.285000000</property>
+  <property name="meta.attr.2.stream.NUMBER_OF_FRAMES.markup">431</property>
+  <property name="meta.attr.2.stream.NUMBER_OF_FRAMES-eng.markup">431</property>
+  <property name="meta.attr.2.stream.NUMBER_OF_BYTES.markup">527779</property>
+  <property name="meta.attr.2.stream.NUMBER_OF_BYTES-eng.markup">527779</property>
+  <property name="meta.attr.2.stream._STATISTICS_WRITING_APP.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.2.stream._STATISTICS_WRITING_APP-eng.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.2.stream._STATISTICS_WRITING_DATE_UTC.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.2.stream._STATISTICS_WRITING_DATE_UTC-eng.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.2.stream._STATISTICS_TAGS.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.attr.2.stream._STATISTICS_TAGS-eng.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.attr.encoder.markup">libebml v1.3.4 + libmatroska v1.4.5</property>
+  <property name="meta.attr.creation_time.markup">2017-05-28T09:49:30.000000Z</property>
+  <property name="meta.media.sample_aspect_num">374</property>
+  <property name="meta.media.sample_aspect_den">351</property>
+  <property name="meta.media.frame_rate_num">24000</property>
+  <property name="meta.media.frame_rate_den">1001</property>
+  <property name="meta.media.colorspace">601</property>
+  <property name="meta.media.color_trc">1</property>
+  <property name="meta.media.has_b_frames">2</property>
+  <property name="meta.media.width">702</property>
+  <property name="meta.media.height">576</property>
+  <property name="meta.media.aspect_ratio">1.06553</property>
+  <property name="meta.media.color_range">mpeg</property>
+  <property name="xml">was here</property>
+  <property name="mute_on_pause">0</property>
+  <property name="meta.media.top_field_first">0</property>
+  <property name="meta.media.progressive">1</property>
+  <property name="set.test_audio">0</property>
+  <property name="set.test_image">1</property>
+ </chain>
+ <playlist id="playlist2">
+  <property name="kdenlive:audio_track">1</property>
+  <entry in="00:42:38.038" out="00:42:43.961" producer="chain0">
+   <property name="kdenlive:id">4</property>
+   <property name="kdenlive:activeeffect">1</property>
+   <filter id="filter3" in="00:42:43.543" out="00:42:43.961">
+    <property name="window">75</property>
+    <property name="max_gain">20dB</property>
+    <property name="mlt_service">volume</property>
+    <property name="kdenlive_id">fadeout</property>
+    <property name="gain">1</property>
+    <property name="end">0</property>
+    <property name="kdenlive:collapsed">0</property>
+   </filter>
+   <filter id="filter4" in="00:42:38.038" out="00:42:38.455">
+    <property name="window">75</property>
+    <property name="max_gain">20dB</property>
+    <property name="mlt_service">volume</property>
+    <property name="kdenlive_id">fadein</property>
+    <property name="gain">0</property>
+    <property name="end">1</property>
+    <property name="kdenlive:collapsed">0</property>
+   </filter>
+  </entry>
+ </playlist>
+ <playlist id="playlist3">
+  <property name="kdenlive:audio_track">1</property>
+ </playlist>
+ <tractor id="tractor1" in="00:00:00.000" out="00:00:05.923">
+  <property name="kdenlive:audio_track">1</property>
+  <property name="kdenlive:trackheight">75</property>
+  <property name="kdenlive:timeline_active">1</property>
+  <property name="kdenlive:collapsed">0</property>
+  <property name="kdenlive:thumbs_format"/>
+  <property name="kdenlive:audio_rec"/>
+  <track hide="video" producer="playlist2"/>
+  <track hide="video" producer="playlist3"/>
+  <filter id="filter5">
+   <property name="window">75</property>
+   <property name="max_gain">20dB</property>
+   <property name="mlt_service">volume</property>
+   <property name="internal_added">237</property>
+   <property name="disable">1</property>
+  </filter>
+  <filter id="filter6">
+   <property name="channel">-1</property>
+   <property name="mlt_service">panner</property>
+   <property name="internal_added">237</property>
+   <property name="start">0.5</property>
+   <property name="disable">1</property>
+  </filter>
+  <filter id="filter7">
+   <property name="iec_scale">0</property>
+   <property name="mlt_service">audiolevel</property>
+   <property name="dbpeak">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </tractor>
+ <chain id="chain1" out="00:43:28.487">
+  <property name="length">62542</property>
+  <property name="eof">pause</property>
+  <property name="resource">Source/Buffy.S02E17.Passion.mkv</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="format">3</property>
+  <property name="audio_index">1</property>
+  <property name="video_index">0</property>
+  <property name="vstream">0</property>
+  <property name="astream">0</property>
+  <property name="kdenlive:control_uuid">{e65576a3-f837-4ec9-a5e1-12929a34096f}</property>
+  <property name="kdenlive:id">4</property>
+  <property name="kdenlive:clip_type">0</property>
+  <property name="kdenlive:file_size">525154065</property>
+  <property name="kdenlive:file_hash">d18c61a40c5227f9369ed9a2621666f2</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:audio_max1">168</property>
+  <property name="meta.media.nb_streams">3</property>
+  <property name="meta.media.0.stream.type">video</property>
+  <property name="meta.media.0.stream.frame_rate">23.976</property>
+  <property name="meta.media.0.stream.sample_aspect_ratio">1.06553</property>
+  <property name="meta.media.0.codec.width">702</property>
+  <property name="meta.media.0.codec.height">576</property>
+  <property name="meta.media.0.codec.rotate">0</property>
+  <property name="meta.media.0.codec.pix_fmt">yuv420p</property>
+  <property name="meta.media.0.codec.sample_aspect_ratio">1.06667</property>
+  <property name="meta.media.0.codec.colorspace">601</property>
+  <property name="meta.media.0.codec.color_trc">1</property>
+  <property name="meta.media.0.codec.name">h264</property>
+  <property name="meta.media.0.codec.long_name">H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.BPS.markup">1415199</property>
+  <property name="meta.attr.0.stream.BPS-eng.markup">1415199</property>
+  <property name="meta.attr.0.stream.DURATION.markup">00:43:28.523000000</property>
+  <property name="meta.attr.0.stream.DURATION-eng.markup">00:43:28.523000000</property>
+  <property name="meta.attr.0.stream.NUMBER_OF_FRAMES.markup">62542</property>
+  <property name="meta.attr.0.stream.NUMBER_OF_FRAMES-eng.markup">62542</property>
+  <property name="meta.attr.0.stream.NUMBER_OF_BYTES.markup">461447572</property>
+  <property name="meta.attr.0.stream.NUMBER_OF_BYTES-eng.markup">461447572</property>
+  <property name="meta.attr.0.stream._STATISTICS_WRITING_APP.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.0.stream._STATISTICS_WRITING_APP-eng.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.0.stream._STATISTICS_WRITING_DATE_UTC.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.0.stream._STATISTICS_WRITING_DATE_UTC-eng.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.0.stream._STATISTICS_TAGS.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.attr.0.stream._STATISTICS_TAGS-eng.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.media.1.stream.type">audio</property>
+  <property name="meta.media.1.codec.sample_fmt">fltp</property>
+  <property name="meta.media.1.codec.sample_rate">48000</property>
+  <property name="meta.media.1.codec.channels">2</property>
+  <property name="meta.media.1.codec.layout">stereo</property>
+  <property name="meta.media.1.codec.name">ac3</property>
+  <property name="meta.media.1.codec.long_name">ATSC A/52A (AC-3)</property>
+  <property name="meta.media.1.codec.bit_rate">192000</property>
+  <property name="meta.attr.1.stream.language.markup">eng</property>
+  <property name="meta.attr.1.stream.BPS.markup">192000</property>
+  <property name="meta.attr.1.stream.BPS-eng.markup">192000</property>
+  <property name="meta.attr.1.stream.DURATION.markup">00:43:28.480000000</property>
+  <property name="meta.attr.1.stream.DURATION-eng.markup">00:43:28.480000000</property>
+  <property name="meta.attr.1.stream.NUMBER_OF_FRAMES.markup">81515</property>
+  <property name="meta.attr.1.stream.NUMBER_OF_FRAMES-eng.markup">81515</property>
+  <property name="meta.attr.1.stream.NUMBER_OF_BYTES.markup">62603520</property>
+  <property name="meta.attr.1.stream.NUMBER_OF_BYTES-eng.markup">62603520</property>
+  <property name="meta.attr.1.stream._STATISTICS_WRITING_APP.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.1.stream._STATISTICS_WRITING_APP-eng.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.1.stream._STATISTICS_WRITING_DATE_UTC.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.1.stream._STATISTICS_WRITING_DATE_UTC-eng.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.1.stream._STATISTICS_TAGS.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.attr.1.stream._STATISTICS_TAGS-eng.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.media.2.codec.name">dvdsub</property>
+  <property name="meta.media.2.codec.long_name">DVD subtitles</property>
+  <property name="meta.media.2.codec.bit_rate">0</property>
+  <property name="meta.attr.2.stream.language.markup">eng</property>
+  <property name="meta.attr.2.stream.BPS.markup">1633</property>
+  <property name="meta.attr.2.stream.BPS-eng.markup">1633</property>
+  <property name="meta.attr.2.stream.DURATION.markup">00:43:05.285000000</property>
+  <property name="meta.attr.2.stream.DURATION-eng.markup">00:43:05.285000000</property>
+  <property name="meta.attr.2.stream.NUMBER_OF_FRAMES.markup">431</property>
+  <property name="meta.attr.2.stream.NUMBER_OF_FRAMES-eng.markup">431</property>
+  <property name="meta.attr.2.stream.NUMBER_OF_BYTES.markup">527779</property>
+  <property name="meta.attr.2.stream.NUMBER_OF_BYTES-eng.markup">527779</property>
+  <property name="meta.attr.2.stream._STATISTICS_WRITING_APP.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.2.stream._STATISTICS_WRITING_APP-eng.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.2.stream._STATISTICS_WRITING_DATE_UTC.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.2.stream._STATISTICS_WRITING_DATE_UTC-eng.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.2.stream._STATISTICS_TAGS.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.attr.2.stream._STATISTICS_TAGS-eng.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.attr.encoder.markup">libebml v1.3.4 + libmatroska v1.4.5</property>
+  <property name="meta.attr.creation_time.markup">2017-05-28T09:49:30.000000Z</property>
+  <property name="meta.media.sample_aspect_num">374</property>
+  <property name="meta.media.sample_aspect_den">351</property>
+  <property name="meta.media.frame_rate_num">24000</property>
+  <property name="meta.media.frame_rate_den">1001</property>
+  <property name="meta.media.colorspace">601</property>
+  <property name="meta.media.color_trc">1</property>
+  <property name="meta.media.has_b_frames">2</property>
+  <property name="meta.media.width">702</property>
+  <property name="meta.media.height">576</property>
+  <property name="meta.media.aspect_ratio">1.06553</property>
+  <property name="meta.media.color_range">mpeg</property>
+  <property name="xml">was here</property>
+  <property name="mute_on_pause">0</property>
+  <property name="meta.media.top_field_first">0</property>
+  <property name="meta.media.progressive">1</property>
+  <property name="set.test_audio">1</property>
+  <property name="set.test_image">0</property>
+ </chain>
+ <playlist id="playlist4">
+  <entry in="00:42:38.038" out="00:42:43.961" producer="chain1">
+   <property name="kdenlive:id">4</property>
+   <property name="kdenlive:activeeffect">0</property>
+   <filter id="filter8" in="00:42:38.038" out="00:42:38.455">
+    <property name="start">1</property>
+    <property name="level">1</property>
+    <property name="mlt_service">brightness</property>
+    <property name="kdenlive_id">fade_from_black</property>
+    <property name="alpha">00:00:00.000=0;00:00:00.417=1</property>
+    <property name="kdenlive:collapsed">0</property>
+   </filter>
+  </entry>
+ </playlist>
+ <playlist id="playlist5"/>
+ <tractor id="tractor2" in="00:00:00.000" out="00:00:05.923">
+  <property name="kdenlive:trackheight">75</property>
+  <property name="kdenlive:timeline_active">1</property>
+  <property name="kdenlive:collapsed">0</property>
+  <property name="kdenlive:thumbs_format"/>
+  <property name="kdenlive:audio_rec"/>
+  <track hide="audio" producer="playlist4"/>
+  <track hide="audio" producer="playlist5"/>
+ </tractor>
+ <playlist id="playlist6"/>
+ <playlist id="playlist7"/>
+ <tractor id="tractor3" in="00:00:00.000">
+  <property name="kdenlive:trackheight">75</property>
+  <property name="kdenlive:timeline_active">1</property>
+  <property name="kdenlive:collapsed">0</property>
+  <property name="kdenlive:thumbs_format"/>
+  <property name="kdenlive:audio_rec"/>
+  <track hide="audio" producer="playlist6"/>
+  <track hide="audio" producer="playlist7"/>
+ </tractor>
+ <tractor id="{2ece31c2-7c3d-4b1a-98b2-e74720738f18}" in="00:00:00.000" out="00:00:05.923">
+  <property name="kdenlive:uuid">{2ece31c2-7c3d-4b1a-98b2-e74720738f18}</property>
+  <property name="kdenlive:clipname">Sequence 1</property>
+  <property name="kdenlive:sequenceproperties.hasAudio">1</property>
+  <property name="kdenlive:sequenceproperties.hasVideo">1</property>
+  <property name="kdenlive:sequenceproperties.activeTrack">2</property>
+  <property name="kdenlive:sequenceproperties.tracksCount">4</property>
+  <property name="kdenlive:sequenceproperties.documentuuid">{2ece31c2-7c3d-4b1a-98b2-e74720738f18}</property>
+  <property name="kdenlive:control_uuid">{2ece31c2-7c3d-4b1a-98b2-e74720738f18}</property>
+  <property name="kdenlive:duration">00:00:05.964</property>
+  <property name="kdenlive:maxduration">143</property>
+  <property name="kdenlive:producer_type">17</property>
+  <property name="kdenlive:id">3</property>
+  <property name="kdenlive:clip_type">0</property>
+  <property name="kdenlive:file_size">0</property>
+  <property name="kdenlive:folderid">2</property>
+  <property name="kdenlive:sequenceproperties.audioTarget">1</property>
+  <property name="kdenlive:sequenceproperties.disablepreview">0</property>
+  <property name="kdenlive:sequenceproperties.position">142</property>
+  <property name="kdenlive:sequenceproperties.scrollPos">0</property>
+  <property name="kdenlive:sequenceproperties.tracks">4</property>
+  <property name="kdenlive:sequenceproperties.verticalzoom">1</property>
+  <property name="kdenlive:sequenceproperties.videoTarget">2</property>
+  <property name="kdenlive:sequenceproperties.zonein">0</property>
+  <property name="kdenlive:sequenceproperties.zoneout">75</property>
+  <property name="kdenlive:sequenceproperties.zoom">5</property>
+  <property name="kdenlive:sequenceproperties.groups">[
+    {
+        "children": [
+            {
+                "data": "2:0:-1",
+                "leaf": "clip",
+                "type": "Leaf"
+            },
+            {
+                "data": "1:0:-1",
+                "leaf": "clip",
+                "type": "Leaf"
+            }
+        ],
+        "type": "AVSplit"
+    }
+]
+</property>
+  <property name="kdenlive:sequenceproperties.guides">[
+]
+</property>
+  <track producer="producer0"/>
+  <track producer="tractor0"/>
+  <track producer="tractor1"/>
+  <track producer="tractor2"/>
+  <track producer="tractor3"/>
+  <transition id="transition0">
+   <property name="a_track">0</property>
+   <property name="b_track">1</property>
+   <property name="mlt_service">mix</property>
+   <property name="kdenlive_id">mix</property>
+   <property name="internal_added">237</property>
+   <property name="always_active">1</property>
+   <property name="accepts_blanks">1</property>
+   <property name="sum">1</property>
+  </transition>
+  <transition id="transition1">
+   <property name="a_track">0</property>
+   <property name="b_track">2</property>
+   <property name="mlt_service">mix</property>
+   <property name="kdenlive_id">mix</property>
+   <property name="internal_added">237</property>
+   <property name="always_active">1</property>
+   <property name="accepts_blanks">1</property>
+   <property name="sum">1</property>
+  </transition>
+  <transition id="transition2">
+   <property name="a_track">0</property>
+   <property name="b_track">3</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="internal_added">237</property>
+   <property name="always_active">1</property>
+  </transition>
+  <transition id="transition3">
+   <property name="a_track">0</property>
+   <property name="b_track">4</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="internal_added">237</property>
+   <property name="always_active">1</property>
+  </transition>
+  <filter id="filter9">
+   <property name="window">75</property>
+   <property name="max_gain">20dB</property>
+   <property name="mlt_service">volume</property>
+   <property name="internal_added">237</property>
+   <property name="disable">1</property>
+  </filter>
+  <filter id="filter10">
+   <property name="channel">-1</property>
+   <property name="mlt_service">panner</property>
+   <property name="internal_added">237</property>
+   <property name="start">0.5</property>
+   <property name="disable">1</property>
+  </filter>
+ </tractor>
+ <chain id="chain2" out="00:43:28.487">
+  <property name="length">62542</property>
+  <property name="eof">pause</property>
+  <property name="resource">Source/Buffy.S02E17.Passion.mkv</property>
+  <property name="mlt_service">avformat</property>
+  <property name="meta.media.nb_streams">3</property>
+  <property name="meta.media.0.stream.type">video</property>
+  <property name="meta.media.0.stream.frame_rate">23.976</property>
+  <property name="meta.media.0.stream.sample_aspect_ratio">1.06553</property>
+  <property name="meta.media.0.codec.width">702</property>
+  <property name="meta.media.0.codec.height">576</property>
+  <property name="meta.media.0.codec.rotate">0</property>
+  <property name="meta.media.0.codec.pix_fmt">yuv420p</property>
+  <property name="meta.media.0.codec.sample_aspect_ratio">1.06667</property>
+  <property name="meta.media.0.codec.colorspace">601</property>
+  <property name="meta.media.0.codec.color_trc">1</property>
+  <property name="meta.media.0.codec.name">h264</property>
+  <property name="meta.media.0.codec.long_name">H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.BPS.markup">1415199</property>
+  <property name="meta.attr.0.stream.BPS-eng.markup">1415199</property>
+  <property name="meta.attr.0.stream.DURATION.markup">00:43:28.523000000</property>
+  <property name="meta.attr.0.stream.DURATION-eng.markup">00:43:28.523000000</property>
+  <property name="meta.attr.0.stream.NUMBER_OF_FRAMES.markup">62542</property>
+  <property name="meta.attr.0.stream.NUMBER_OF_FRAMES-eng.markup">62542</property>
+  <property name="meta.attr.0.stream.NUMBER_OF_BYTES.markup">461447572</property>
+  <property name="meta.attr.0.stream.NUMBER_OF_BYTES-eng.markup">461447572</property>
+  <property name="meta.attr.0.stream._STATISTICS_WRITING_APP.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.0.stream._STATISTICS_WRITING_APP-eng.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.0.stream._STATISTICS_WRITING_DATE_UTC.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.0.stream._STATISTICS_WRITING_DATE_UTC-eng.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.0.stream._STATISTICS_TAGS.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.attr.0.stream._STATISTICS_TAGS-eng.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.media.1.stream.type">audio</property>
+  <property name="meta.media.1.codec.sample_fmt">fltp</property>
+  <property name="meta.media.1.codec.sample_rate">48000</property>
+  <property name="meta.media.1.codec.channels">2</property>
+  <property name="meta.media.1.codec.layout">stereo</property>
+  <property name="meta.media.1.codec.name">ac3</property>
+  <property name="meta.media.1.codec.long_name">ATSC A/52A (AC-3)</property>
+  <property name="meta.media.1.codec.bit_rate">192000</property>
+  <property name="meta.attr.1.stream.language.markup">eng</property>
+  <property name="meta.attr.1.stream.BPS.markup">192000</property>
+  <property name="meta.attr.1.stream.BPS-eng.markup">192000</property>
+  <property name="meta.attr.1.stream.DURATION.markup">00:43:28.480000000</property>
+  <property name="meta.attr.1.stream.DURATION-eng.markup">00:43:28.480000000</property>
+  <property name="meta.attr.1.stream.NUMBER_OF_FRAMES.markup">81515</property>
+  <property name="meta.attr.1.stream.NUMBER_OF_FRAMES-eng.markup">81515</property>
+  <property name="meta.attr.1.stream.NUMBER_OF_BYTES.markup">62603520</property>
+  <property name="meta.attr.1.stream.NUMBER_OF_BYTES-eng.markup">62603520</property>
+  <property name="meta.attr.1.stream._STATISTICS_WRITING_APP.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.1.stream._STATISTICS_WRITING_APP-eng.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.1.stream._STATISTICS_WRITING_DATE_UTC.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.1.stream._STATISTICS_WRITING_DATE_UTC-eng.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.1.stream._STATISTICS_TAGS.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.attr.1.stream._STATISTICS_TAGS-eng.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.media.2.codec.name">dvdsub</property>
+  <property name="meta.media.2.codec.long_name">DVD subtitles</property>
+  <property name="meta.media.2.codec.bit_rate">0</property>
+  <property name="meta.attr.2.stream.language.markup">eng</property>
+  <property name="meta.attr.2.stream.BPS.markup">1633</property>
+  <property name="meta.attr.2.stream.BPS-eng.markup">1633</property>
+  <property name="meta.attr.2.stream.DURATION.markup">00:43:05.285000000</property>
+  <property name="meta.attr.2.stream.DURATION-eng.markup">00:43:05.285000000</property>
+  <property name="meta.attr.2.stream.NUMBER_OF_FRAMES.markup">431</property>
+  <property name="meta.attr.2.stream.NUMBER_OF_FRAMES-eng.markup">431</property>
+  <property name="meta.attr.2.stream.NUMBER_OF_BYTES.markup">527779</property>
+  <property name="meta.attr.2.stream.NUMBER_OF_BYTES-eng.markup">527779</property>
+  <property name="meta.attr.2.stream._STATISTICS_WRITING_APP.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.2.stream._STATISTICS_WRITING_APP-eng.markup">mkvmerge v9.6.0 ('Slave To Your Mind') 64bit</property>
+  <property name="meta.attr.2.stream._STATISTICS_WRITING_DATE_UTC.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.2.stream._STATISTICS_WRITING_DATE_UTC-eng.markup">2017-05-28 09:49:30</property>
+  <property name="meta.attr.2.stream._STATISTICS_TAGS.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.attr.2.stream._STATISTICS_TAGS-eng.markup">BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES</property>
+  <property name="meta.attr.encoder.markup">libebml v1.3.4 + libmatroska v1.4.5</property>
+  <property name="meta.attr.creation_time.markup">2017-05-28T09:49:30.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="meta.media.sample_aspect_num">374</property>
+  <property name="meta.media.sample_aspect_den">351</property>
+  <property name="format">3</property>
+  <property name="audio_index">1</property>
+  <property name="video_index">0</property>
+  <property name="vstream">0</property>
+  <property name="meta.media.frame_rate_num">24000</property>
+  <property name="meta.media.frame_rate_den">1001</property>
+  <property name="meta.media.colorspace">601</property>
+  <property name="meta.media.color_trc">1</property>
+  <property name="meta.media.has_b_frames">2</property>
+  <property name="meta.media.width">702</property>
+  <property name="meta.media.height">576</property>
+  <property name="meta.media.aspect_ratio">1.06553</property>
+  <property name="meta.media.color_range">mpeg</property>
+  <property name="astream">0</property>
+  <property name="meta.media.top_field_first">0</property>
+  <property name="meta.media.progressive">1</property>
+  <property name="kdenlive:control_uuid">{e65576a3-f837-4ec9-a5e1-12929a34096f}</property>
+  <property name="kdenlive:id">4</property>
+  <property name="kdenlive:clip_type">0</property>
+  <property name="kdenlive:file_size">525154065</property>
+  <property name="kdenlive:file_hash">d18c61a40c5227f9369ed9a2621666f2</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:audio_max1">168</property>
+ </chain>
+ <playlist id="main_bin">
+  <property name="kdenlive:folder.-1.2">Sequences</property>
+  <property name="kdenlive:sequenceFolder">2</property>
+  <property name="kdenlive:docproperties.audioChannels">2</property>
+  <property name="kdenlive:docproperties.binsort">0</property>
+  <property name="kdenlive:docproperties.browserurl"/>
+  <property name="kdenlive:docproperties.documentid">1746370183640</property>
+  <property name="kdenlive:docproperties.enableTimelineZone">0</property>
+  <property name="kdenlive:docproperties.enableexternalproxy">0</property>
+  <property name="kdenlive:docproperties.enableproxy">0</property>
+  <property name="kdenlive:docproperties.externalproxyparams">./;;.LRV;./;;.MP4</property>
+  <property name="kdenlive:docproperties.generateimageproxy">0</property>
+  <property name="kdenlive:docproperties.generateproxy">0</property>
+  <property name="kdenlive:docproperties.guidesCategories">[
+    {
+        "color": "#9b59b6",
+        "comment": "Category 1",
+        "index": 0
+    },
+    {
+        "color": "#3daee9",
+        "comment": "Category 2",
+        "index": 1
+    },
+    {
+        "color": "#1abc9c",
+        "comment": "Category 3",
+        "index": 2
+    },
+    {
+        "color": "#1cdc9a",
+        "comment": "Category 4",
+        "index": 3
+    },
+    {
+        "color": "#c9ce3b",
+        "comment": "Category 5",
+        "index": 4
+    },
+    {
+        "color": "#fdbc4b",
+        "comment": "Category 6",
+        "index": 5
+    },
+    {
+        "color": "#f39c1f",
+        "comment": "Category 7",
+        "index": 6
+    },
+    {
+        "color": "#f47750",
+        "comment": "Category 8",
+        "index": 7
+    },
+    {
+        "color": "#da4453",
+        "comment": "Category 9",
+        "index": 8
+    }
+]
+</property>
+  <property name="kdenlive:docproperties.kdenliveversion">24.12.1</property>
+  <property name="kdenlive:docproperties.previewextension"/>
+  <property name="kdenlive:docproperties.previewparameters"/>
+  <property name="kdenlive:docproperties.profile">/home/logiclrd/.local/share/kdenlive/profiles/customprofile39</property>
+  <property name="kdenlive:docproperties.proxyextension"/>
+  <property name="kdenlive:docproperties.proxyimageminsize">2000</property>
+  <property name="kdenlive:docproperties.proxyimagesize">800</property>
+  <property name="kdenlive:docproperties.proxyminsize">1000</property>
+  <property name="kdenlive:docproperties.proxyparams"/>
+  <property name="kdenlive:docproperties.proxyresize">640</property>
+  <property name="kdenlive:docproperties.seekOffset">30000</property>
+  <property name="kdenlive:docproperties.sessionid">{9e4d9ec2-54fd-4c19-888f-ace11b58662b}</property>
+  <property name="kdenlive:docproperties.uuid">{2ece31c2-7c3d-4b1a-98b2-e74720738f18}</property>
+  <property name="kdenlive:docproperties.version">1.1</property>
+  <property name="kdenlive:expandedFolders"/>
+  <property name="kdenlive:binZoom">4</property>
+  <property name="kdenlive:extraBins">project_bin:-1:0;project_bin_2:-1:0</property>
+  <property name="kdenlive:documentnotes"/>
+  <property name="kdenlive:documentnotesversion">2</property>
+  <property name="kdenlive:docproperties.opensequences">{2ece31c2-7c3d-4b1a-98b2-e74720738f18}</property>
+  <property name="kdenlive:docproperties.activetimeline">{2ece31c2-7c3d-4b1a-98b2-e74720738f18}</property>
+  <property name="xml_retain">1</property>
+  <entry in="00:00:00.000" out="00:00:00.000" producer="{2ece31c2-7c3d-4b1a-98b2-e74720738f18}"/>
+  <entry in="00:00:00.000" out="00:43:28.487" producer="chain2"/>
+ </playlist>
+ <tractor id="tractor4" in="00:00:00.000" out="00:00:05.923">
+  <property name="kdenlive:projectTractor">1</property>
+  <track in="00:00:00.000" out="00:00:05.923" producer="{2ece31c2-7c3d-4b1a-98b2-e74720738f18}"/>
+ </tractor>
+</mlt>

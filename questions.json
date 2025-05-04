@@ -12,7 +12,6 @@
 	{
 		"Text": "Speaking of '90s soap operas, what show is this the theme song for, and what other significance does it have to Buffy the Vampire Slayer?",
 		"Video": "2-Question.mkv",
-		"VideoAutoPlay": true,
 		"Comment": "Play audio only, 0:00-0:10 - https://www.youtube.com/watch?v=502oR8iotGs&list=RD502oR8iotGs&start_radio=1. Could also show this after it: https://www.youtube.com/watch?v=N4LTtqYkk1Y",
 		"Answer":
 		{
@@ -26,7 +25,8 @@
 		"Answer":
 		{
 			"Text": "<i>Alyson Hannigan</i> starred as Michelle Flaherty in the 1999 movie American Pie.",
-			"Video": "3-Answer.mkv"
+			"Video": "3-Answer.mkv",
+			"MinVideoWidth": "40vw"
 		}
 	},
 	{
@@ -64,7 +64,9 @@
 		"Answer":
 		{
 			"Text": "<i>Amber Benson</i>, along with Liv Tyler and Melissa Joan Hart, was among a number of names whose absence in the credits for Can't Hardly Wait is surprising.",
-			"Video": "7-Answer.mkv"
+			"TextLineHeight": 1,
+			"Video": "7-Answer.mkv",
+			"MinVideoWidth": "32vw"
 		}
 	},
 	{
@@ -111,7 +113,8 @@
 		"Answer":
 		{
 			"Text": "<i>Doogie Howser</i>, in which Neil Patrick Harris stars as the character after which the show is named.",
-			"Video": "12-Answer.mkv"
+			"Video": "12-Answer.mkv",
+			"MinVideoWidth": "34vw"
 		}
 	},
 	{
@@ -195,7 +198,7 @@
 	{
 		"Text": "Lastly, what on Earth is this thing that falls to the ground and is an important part of the episode?",
 		"Comment": "Clip from Buffy s2 ep. 17, 43:17-43:31",
-		"Image": "22-Question.png",
+		"Video": "22-Question.mkv",
 		"Answer":
 		{
 			"Text": "Before USB drives, we stored files on \"floppy disks\" that contained a disc coated in rust. \"Disk drives\" physically spun it in order to access data. Even by the standards of the day, they were <i>very slow</i>.",
