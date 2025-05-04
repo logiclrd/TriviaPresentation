@@ -648,6 +648,24 @@
   <property name="kdenlive:documentnotesversion">2</property>
   <property name="kdenlive:docproperties.opensequences">{2ece31c2-7c3d-4b1a-98b2-e74720738f18}</property>
   <property name="kdenlive:docproperties.activetimeline">{2ece31c2-7c3d-4b1a-98b2-e74720738f18}</property>
+  <property name="kdenlive:docproperties.rendercategory">Generic (HD for web, mobile devices...)</property>
+  <property name="kdenlive:docproperties.rendercustomquality">100</property>
+  <property name="kdenlive:docproperties.renderendguide">-1</property>
+  <property name="kdenlive:docproperties.renderexportaudio">0</property>
+  <property name="kdenlive:docproperties.renderfullcolorrange">0</property>
+  <property name="kdenlive:docproperties.rendermode">0</property>
+  <property name="kdenlive:docproperties.renderplay">0</property>
+  <property name="kdenlive:docproperties.renderpreview">0</property>
+  <property name="kdenlive:docproperties.renderprofile">Matroska-H264/AAC</property>
+  <property name="kdenlive:docproperties.renderrescale">0</property>
+  <property name="kdenlive:docproperties.renderrescaleheight">288</property>
+  <property name="kdenlive:docproperties.renderrescalewidth">351</property>
+  <property name="kdenlive:docproperties.renderspeed">6</property>
+  <property name="kdenlive:docproperties.renderstartguide">-1</property>
+  <property name="kdenlive:docproperties.rendertcoverlay">0</property>
+  <property name="kdenlive:docproperties.rendertctype">-1</property>
+  <property name="kdenlive:docproperties.rendertwopass">0</property>
+  <property name="kdenlive:docproperties.renderurl">22-Question.mkv</property>
   <property name="xml_retain">1</property>
   <entry in="00:00:00.000" out="00:00:00.000" producer="{2ece31c2-7c3d-4b1a-98b2-e74720738f18}"/>
   <entry in="00:00:00.000" out="00:43:28.487" producer="chain2"/>
