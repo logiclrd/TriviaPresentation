@@ -209,7 +209,8 @@ video
 	color: #ddd;
 }
 
-.CreditText.Subtitle > span
+.CreditText.Subtitle > span,
+.CreditText.Opaque > span
 {
 	background: black;
 }

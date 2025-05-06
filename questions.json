@@ -1,209 +1,54 @@
 [
 	{
-		"Text": "Before she slew vampires, Sarah Michelle Gellar appeared in this soap opera in the 1990s.",
-		"Video": "1-Question.mp4",
-		"Comment": "Can include clip - 3:42-3:58 https://www.youtube.com/watch?v=IZG0L46nuD4 / Also possible clip source: https://archive.org/details/all-my-children-august-12-1994",
-		"Answer":
-		{
-			"Text": "Sarah Michelle Gellar starred as Kendall in the award-winning soap opera <i>All My Children</i>.",
-			"Video": "1-Answer.mkv"
-		}
+		"Music": "None"
 	},
 	{
-		"Text": "Speaking of '90s soap operas, what show is this the theme song for, and what other significance does it have to Buffy the Vampire Slayer?",
-		"Video": "2-Question.mkv",
-		"Comment": "Play audio only, 0:00-0:10 - https://www.youtube.com/watch?v=502oR8iotGs&list=RD502oR8iotGs&start_radio=1. Could also show this after it: https://www.youtube.com/watch?v=N4LTtqYkk1Y",
-		"Answer":
-		{
-			"Text": "Spike and Joyce found a shared passion for the soap opera <i>Passions</i>.",
-			"Video": "2-Answer.mkv"
-		}
-	},
-	{
-		"Text": "Well, this actress has always been a little nerdy, including in 1999 when, \"This one time, at band camp...\"",
-		"Comment": "clip from 0:00-0:22 https://www.youtube.com/watch?v=K9NeSYqFiLY",
-		"Answer":
-		{
-			"Text": "<i>Alyson Hannigan</i> starred as Michelle Flaherty in the 1999 movie American Pie.",
-			"Video": "3-Answer.mkv",
-			"MinVideoWidth": "40vw"
-		}
-	},
-	{
-		"Text": "Before he was a hunky librarian, he was a hunky connoisseur of what brand of coffee?",
-		"Video": "4-Question.mkv",
-		"Comment": "Clips have already been isolated as part of making the PoC in Kdenlive",
-		"Answer":
-		{
-			"Text": "Anthony Stewart Head starred in a series of commercials for <i>Nescafe Gold Blend</i>.",
-			"Video": "4-Answer.mkv",
-			"MinVideoWidth": "35vw"
-		}
-	},
-	{
-		"Text": "While it's fun to laugh at the old tech used on Buffy, the show actually had the <i>first instance</i> of this search engine's name being used as a verb.",
-		"Comment": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fifunny.co%2Fpicture%2Fsometimes-i-forget-how-old-buffy-is-until-i-see-n5kSAVz3A&psig=AOvVaw2qnFqJTwR5F6eL4V9IZ3_c&ust=1745726895420000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCPj6uM_p9IwDFQAAAAAdAAAAABAI",
-		"Answer":
-		{
-			"Text": "Maybe you should <i>Google it!</i>",
-			"Image": "5-Answer.jpg"
-		}
-	},
-	{
-		"Text": "This 1995 film features not one, not two but three Buffy alumnae &ndash; Eliza Dushku (Faith), Amber Benson (Tara) and Lindsay Crouse (Professor Walsh).",
-		"Comment": "clip from 0:10-0:27 https://www.youtube.com/watch?v=-l0uznoY77o&list=RD-l0uznoY77o&start_radio=1",
-		"Answer":
-		{
-			"Text": "<i>Bye Bye Love</i>",
-			"Video": "6-Answer.mkv"
-		}
-	},
-	{
-		"Text": "In 1998's <i>Can't Hardly Wait</i>, this Buffy alumna has consumed a substance and stares at a banana.",
-		"Comment": "https://www.youtube.com/watch?v=IRDhbfy28no 21:09 in",
-		"Answer":
-		{
-			"Text": "<i>Amber Benson</i>, along with Liv Tyler and Melissa Joan Hart, was among a number of names whose absence in the credits for Can't Hardly Wait is surprising.",
-			"TextLineHeight": 1,
-			"Video": "7-Answer.mkv",
-			"MinVideoWidth": "32vw"
-		}
-	},
-	{
-		"Text": "Also in <i>Can't Hardly Wait</i>, Seth Green plays Kenny Fisher, who prefers to be called what name?",
-		"Comment": "Clip from 0:00-0:13 https://www.youtube.com/watch?v=fXpwdtEGSak, or possibly 21 minutes in",
-		"Answer":
-		{
-			"Text": "<i>Special K</i>",
-			"Video": "8-Answer.mkv"
-		}
-	},
-	{
-		"Text": "The 1999 queer classic <i>But I'm a Cheerleader</i> stars two Buffy alumni &ndash; who are they, and what roles do they play on Buffy?",
-		"Comment": "Clip from 2:36-3:05 https://www.youtube.com/watch?v=BaSncxy0W5g",
-		"Answer":
-		{
-			"Text": "<i>Clea Duvall</i>, who plays Marcie Ross, the invisible girl in Buffy Season 1, and <i>Katherine Towne</i>, who plays a vampire named Sunday in Buffy Season 4",
-			"TextLineHeight": 1.1,
-			"Video": "9-Answer.mkv",
-			"MinVideoWidth": "30vw"
-		}
-	},
-	{
-		"Text": "Another actor in this film was not in Buffy, but she was originally thought of for the role of Willow and turned it down!",
-		"Answer":
-		{
-			"Text": "<i>Melanie Lynskey</i>, who played Hilary in But I'm a Cheerleader.",
-			"Video": "10-Answer.mkv",
-			"MinVideoWidth": "35vw"
-		}
-	},
-	{
-		"Text": "One of our event buttons this year utters this famous and very 1990s Buffy quote, \"If the apocalypse comes, ...\"",
-		"Comment": "whole clip shown - https://www.youtube.com/watch?v=cDGOjq20QGc",
-		"Answer":
-		{
-			"Text": "<i>Beep Me</i>",
-			"Subtext": "Hands up in the audience if you're too young to know what a pager is!",
-			"Image": "11-Answer.svg"
-		}
-	},
-	{
-		"Text": "He has a history of medical acting! Before he was Horrible, he starred as a child doctor in what show?",
-		"Answer":
-		{
-			"Text": "<i>Doogie Howser</i>, in which Neil Patrick Harris stars as the character after which the show is named.",
-			"Video": "12-Answer.mkv",
-			"MinVideoWidth": "34vw"
-		}
-	},
-	{
-		"Text": "Like older sister, like younger sister... The actors behind both Summers girls starred in commercials for which fast food chain, exactly 10 years apart in 1981 and 1991?",
-		"Comment": "Take a clip from Dawn's - https://www.youtube.com/watch?v=do4QbGcRwkI Take a clip from Buffy's - https://www.youtube.com/watch?v=-Ss7_5PSnyA ",
-		"Answer":
-		{
-			"Text": "<i>Burger King</i>",
-			"Subtext": "Michelle Trachtenberg was also in a commercial for Wendy's!",
-			"Video": "13-Answer.mkv"
-		}
-	},
-	{
-		"Text": "A younger Nathan Fillion is mistaken for the wrong Ryan and given devastating news in this 1998 war epic.",
-		"Comment": "Clip 2:37-2:59 https://www.youtube.com/watch?v=AaS2yRAf8B8 ",
-		"Answer":
-		{
-			"Text": "<i>Saving Private Ryan</i>, directed by Steven Spielberg",
-			"Video": "14-Answer.mkv",
-			"MinVideoWidth": "35vw"
-		}
-	},
-	{
-		"Text": "Before he was the bad boy Buffy boyfriend, David Boreanaz also played a bad boy boyfriend on what sitcom in 1993?",
-		"Comment": "Clip 2:03-2:18 https://www.youtube.com/watch?v=QjraQ19cWho ",
-		"Answer":
-		{
-			"Text": "<i>Married... with Children</i>",
-			"Video": "15-Answer.mkv"
-		}
-	},
-	{
-		"Text": "Cordelia references this 1990s store and ad campaign telling Willow in the very first episode, \"Nice dress! Good to know you've seen...\"",
-		"Comment": "0:26-0:30 - https://www.youtube.com/watch?v=OkunW01gJLk ",
-		"Answer":
-		{
-			"Text": "... the softer side of <i>Sears</i>",
-			"Video": "16-Answer.mkv"
-		}
-	},
-	{
-		"Text": "As most know, Buffy was a 1992 movie before it was a TV show! Name some big celebrity names to star in that movie.",
-		"Comment": "Clip from 1:22-1:53 https://www.youtube.com/watch?v=5xLV-FUBhkY;  ",
-		"Video": "18-Question.mkv",
-		"Answer":
-		{
-			"Text": "We found: Kristy Swanson; Ben Affleck; David Arquette; Luke Perry; Paul Reubens; Donald Sutherland; Hilary Swank<br><br>Any others?"
-		}
-	},
-	{
-		"Text": "Another button references this popular 1990s food which Spike is partial to &ndash; what is it?",
-		"Comment": "0:21-0:30 https://www.youtube.com/watch?v=6eb3unhWIs0 ",
-		"Answer":
-		{
-			"Text": "The <i>Blooming Onion</i>",
-			"Video": "19-Answer.mkv"
-		}
-	},
-	{
-		"Text": "It's so fun to share the show with Junior Scoobies &ndash; but some references might be lost on them. Here are some questions for the kids here that will test your knowledge of lost 1990s technology!<br><br>Buffy tells Giles, \"Be kind, rewind.\" What does that mean?",
-		"Answer":
-		{
-			"QuestionText": "Buffy tells Giles, \"Be kind, rewind.\" What does that mean?",
-			"Text": "Shows and movies used to come on <i>VHS tapes</i>. The tape played from one reel to the other. It had to be \"rewound\" in order to be played again. Tapes could be rented, and some shops put stickers on to remind to rewind!",
-			"TextLineHeight": 1,
-			"Image": "20-Answer.gif",
-			"StickerOnImage":
-			{
-				"Image": "BeKindRewind.svg"
-			}
-		}
-	},
-	{
-		"Text": "How about when Buffy says, \"I killed my Giga Pet\". What's that??",
-		"Answer":
-		{
-			"Text": "Simple electronic toys that displayed a little animal on their screen. You had to take good care of your pet, or it would become depressed or die. You may have heard of a similar toy, the Tamagotchi.",
-			"Image": "21-Answer.gif"
-		}
-	},
-	{
-		"Text": "Lastly, what on Earth is this thing that falls to the ground and is an important part of the episode?",
-		"Comment": "Clip from Buffy s2 ep. 17, 43:17-43:31",
-		"Video": "22-Question.mkv",
-		"Answer":
-		{
-			"Text": "Before USB drives, we stored files on \"floppy disks\" that contained a disc coated in rust. \"Disk drives\" physically spun it in order to access data. Even by the standards of the day, they were <i>very slow</i>.",
-			"TextLineHeight": 1,
-			"Image": "22-Answer.png"
-		}
+		"Credits":
+		[
+			{ "Heading": "Event Creator / Badass MC", "Text": "Kendra Monk" },
+			{ "Heading": "Props Master", "Text": "Daniel Raymond" },
+			{ "Heading": "Tech Wizard", "Text": "Jonathan Gilbert" },
+			{ "Heading": "Original Music", "Text": "Jonathan Gilbert" },
+			{ "Heading": "Stage Manager", "Text": "Kay Rudge" },
+			{ "Heading": "Junior Scoobies", "Text": "Adriel Ross Simard" },
+			{ "Heading": "Junior Scoobies", "Text": "Adriel Ross Simard<br>Ellia Dunlop" },
+			{ "Heading": "Junior Scoobies", "Text": "Adriel Ross Simard<br>Ellia Dunlop<br>Kaleesi Monk" },
+			{ "Heading": "Junior Scoobies", "Text": "Adriel Ross Simard<br>Ellia Dunlop<br>Kaleesi Monk<br>Joss Monk" },
+			{ "Heading": "Costume/Art & Printer Whispering", "Text": "Britt Ross" },
+			{ "Heading": "Costume/Art & Printer Whispering", "Text": "Britt Ross<br>Damion Ross" },
+			{ "Heading": "Donations Foraging", "Text": "Adrian Cheater" },
+			{ "Heading": "Silent Auction Package Coordinator", "Text": "Kirsten Ireland" },
+			{ "Heading": "Intern", "Text": "Corey Simanavicius" },
+			{ "Heading": "Hug Technician", "Text": "Katie Doerksen" },
+			{ "Heading": "Foreign Language Correspondent", "Text": "Micheline Girouard" },
+			{ "Heading": "Wants to win Puppet Angel the most", "Text": "Rachel Twigg" },
+			{ "Heading": "Exists, we think", "Text": "Sarah Reece" },
+			{ "Heading": "Initiate", "Text": "Gail Hoddinott Gregoire" },
+			{ "Heading": "Initiate", "Text": "Gail Hoddinott Gregoire<br>Deb Wurtele" },
+			{ "Heading": "Support", "Text": "Gravy", "Image": "Gravy.jpg" },
+			{ "Heading": "Support", "Text": "Jackie", "Image": "Jackie.png" },
+			{ "Heading": "Support", "Text": "Mishu", "Image": "Mishu.jpg" },
+			{ "Heading": "Support", "Text": "Moogle", "Image": "Moogle.png" },
+			{ "Heading": "Support", "Text": "Pumpkin", "Image": "Pumpkin.jpg" },
+			{ "Text": "Thank you for being a part of this event and supporting Trans Manitoba!", "Style": "Centre White Opaque" },
+			{ "Text": "Thank you for being a part of this event and supporting Trans Manitoba!", "Style": "Centre White Opaque" },
+			{ "Text": "This trivia programme is known to the State of California to cause laughter.", "Style": "Centre Subtitle" },
+			{ "Text": "This trivia programme is known to the State of California to cause laughter.", "Style": "Centre Subtitle" },
+			{ "Text": "This trivia programme is known to the State of California to cause laughter.", "Style": "Centre Subtitle" },
+			{}
+		],
+		"Music": "Credits.flac",
+		"StartTime": 2.85,
+		"EndTime" : 26,
+		"Background": "Arcade.svg",
+		"BackgroundColourStart": "#E5E5E5",
+		"BackgroundColourEnd": "black",
+		"BackgroundColourChangeTime": 4,
+		"BackgroundEffects":
+		[
+			{ "Effect": "PiecesFlyIn" },
+			{ "Effect": "Desaturation", "KeyFrames": [ [0.0, 1.0], [21.0, 1.0], [23.0, 0.0] ] },
+			{ "Effect": "Brightness", "KeyFrames": [ [0.0, 0.0], [2.84, 0.0], [2.85, 1.0], [25.0, 1.0], [27.0, 0.0] ] }
+		]
 	}
 ]
