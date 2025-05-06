@@ -191,7 +191,7 @@
 		"Text": "How about when Buffy says, \"I killed my Giga Pet\". What's that??",
 		"Answer":
 		{
-			"Text": "Simple electronic toys that displayed a little animal on their screen. You had to take good care of your pet, or it would become depressed or die. (They also die of old age.) You may have heard of a similar toy, the Tamagotchi.",
+			"Text": "Simple electronic toys that displayed a little animal on their screen. You had to take good care of your pet, or it would become depressed or die. You may have heard of a similar toy, the Tamagotchi.",
 			"Image": "21-Answer.gif"
 		}
 	},
@@ -205,40 +205,5 @@
 			"TextLineHeight": 1,
 			"Image": "22-Answer.png"
 		}
-	},
-	{
-		"Credits":
-		[
-			{ "Heading": "Trivia Questions", "Text": "Kendra Monk" },
-			{ "Heading": "Tech", "Text": "Jonathan Gilbert" },
-			{ "Heading": "Music", "Text": "Jonathan Gilbert" },
-			{ "Heading": "Supervision", "Text": "Adriel" },
-			{ "Heading": "Supervision", "Text": "Adriel<br>Ellia" },
-			{ "Heading": "Supervision", "Text": "Adriel<br>Ellia<br>Joss" },
-			{ "Heading": "Supervision", "Text": "Adriel<br>Ellia<br>Joss<br>Kaleesi" },
-			{ "Heading": "Support", "Text": "Gravy", "Image": "Gravy.jpg" },
-			{ "Heading": "Support", "Text": "Jackie", "Image": "Jackie.png" },
-			{ "Heading": "Support", "Text": "Mishu", "Image": "Mishu.jpg" },
-			{ "Heading": "Support", "Text": "Moogle", "Image": "Moogle.png" },
-			{ "Heading": "Support", "Text": "Pumpkin", "Image": "Pumpkin.jpg" },
-			{ "Heading": "Chief Executive Director in Charge of the Llamas", "Text": "Daniel Raymond" },
-			{ "Heading": "Everything Else", "Text": "You Fabulous Folk!" },
-			{ "Text": "Thank you for being a part of this event and supporting Trans Manitoba!", "Style": "Centre White" },
-			{ "Text": "This trivia programme is known to the State of California to cause laughter.", "Style": "Centre Subtitle" },
-			{}
-		],
-		"Music": "Credits.flac",
-		"StartTime": 2.85,
-		"EndTime" : 26,
-		"Background": "Arcade.svg",
-		"BackgroundColourStart": "#E5E5E5",
-		"BackgroundColourEnd": "black",
-		"BackgroundColourChangeTime": 4,
-		"BackgroundEffects":
-		[
-			{ "Effect": "PiecesFlyIn" },
-			{ "Effect": "Desaturation", "KeyFrames": [ [0.0, 1.0], [21.0, 1.0], [23.0, 0.0] ] },
-			{ "Effect": "Brightness", "KeyFrames": [ [0.0, 0.0], [2.84, 0.0], [2.85, 1.0], [25.0, 1.0], [27.0, 0.0] ] }
-		]
 	}
 ]
